@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/AllWhite"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+
+        android:layout_width="fill_parent"
+        android:layout_height="80dip"
+        android:orientation="horizontal">
+
+        <TextView
+
+            android:layout_width="120dip"
+            android:layout_height="fill_parent"
+            android:layout_marginRight="20dip"
+            android:gravity="center"
+            android:text="报警电话:"
+            android:textColor="@color/Black"
+            android:textColorHint="@color/Gray"
+            android:textSize="@dimen/Two_word"
+
+            />
+
+        <EditText
+            android:id="@+id/sos_phone"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@null"
+            android:hint="请输入报警电话"
+            android:inputType="number"
+            android:maxLength="11"
+            android:textColor="@color/Black"
+            android:textSize="@dimen/Two_word" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/recLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="bottom"
+        android:orientation="vertical">
+        <!--认证版取消该按键-->
+        <!--<Button-->
+        <!--android:onClick="keep"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@color/Blue"-->
+        <!--android:text="保存配置"-->
+        <!--android:textColor="@color/White"-->
+        <!--android:textSize="@dimen/four_word"-->
+        <!--/>-->
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/Blue"
+            android:onClick="huoqu"
+            android:text="获取号码"
+            android:textColor="@color/White"
+            android:textSize="@dimen/four_word"
+            android:visibility="gone" />
+    </LinearLayout>
+</LinearLayout>

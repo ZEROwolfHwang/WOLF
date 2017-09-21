@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!--<TextView-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="60dip"-->
+            <!--android:layout_marginLeft="20dip"-->
+            <!--android:clickable="true"-->
+            <!--android:gravity="center|left"-->
+            <!--android:onClick="goToAisSetting"-->
+            <!--android:text="AIS设置"-->
+            <!--android:textColor="@color/Black"-->
+            <!--android:textColorHint="@color/Gray"-->
+            <!--android:textSize="@dimen/Two_word" />-->
+            <!--测试版-->
+            <!--<TextView-->
+                <!--android:id="@+id/setting_aissz"-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="60dip"-->
+                <!--android:layout_marginLeft="20dip"-->
+                <!--android:clickable="true"-->
+                <!--android:gravity="center|left"-->
+                <!--android:onClick="goToAisSetting"-->
+                <!--android:text="AIS设置"-->
+                <!--android:textColor="@color/Black"-->
+                <!--android:textColorHint="@color/Gray"-->
+                <!--android:textSize="@dimen/Two_word" />-->
+
+            <!--认证版-->
+            <TextView
+                android:id="@+id/setting_aissz"
+                android:layout_width="fill_parent"
+                android:layout_height="60dip"
+                android:layout_marginLeft="20dip"
+                android:clickable="true"
+                android:gravity="center|left"
+                android:onClick="goToAisSetting"
+                android:text="AIS参数"
+                android:textColor="@color/Black"
+                android:textColorHint="@color/Gray"
+                android:textSize="@dimen/Two_word" />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Gray" />
+
+            <!--<TextView-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="60dip"-->
+
+            <!--android:layout_marginLeft="20dip"-->
+            <!--android:clickable="true"-->
+            <!--android:gravity="center|left"-->
+            <!--android:onClick="goToSosSetting"-->
+            <!--android:text="SOS参数"-->
+            <!--android:textColor="@color/Black"-->
+            <!--android:textColorHint="@color/Gray"-->
+            <!--android:textSize="@dimen/Two_word" />-->
+            <TextView
+                android:id="@+id/setting_soscs"
+                android:layout_width="fill_parent"
+                android:layout_height="60dip"
+                android:layout_marginLeft="20dip"
+                android:clickable="true"
+                android:gravity="center|left"
+                android:text="SOS参数"
+                android:textColor="@color/Black"
+                android:textColorHint="@color/Gray"
+                android:textSize="@dimen/Two_word" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Gray" />
+
+            <!--<TextView-->
+                <!--android:id="@+id/fence"-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="60dip"-->
+                <!--android:layout_marginLeft="20dip"-->
+                <!--android:clickable="true"-->
+                <!--android:gravity="center|left"-->
+                <!--android:onClick="electronicfence"-->
+                <!--android:text="电子围栏 : 开"-->
+                <!--android:textColor="@color/Black"-->
+                <!--android:textColorHint="@color/Gray"-->
+                <!--android:textSize="@dimen/Two_word" />-->
+            <TextView
+                android:id="@+id/fence"
+                android:layout_width="fill_parent"
+                android:layout_height="60dip"
+                android:layout_marginLeft="20dip"
+                android:clickable="true"
+                android:gravity="center|left"
+                android:text="电子围栏 : 开"
+                android:textColor="@color/Black"
+                android:textColorHint="@color/Gray"
+                android:textSize="@dimen/Two_word" />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Gray" />
+
+            <!--<TextView-->
+                <!--android:id="@+id/gjts"-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="60dip"-->
+                <!--android:layout_marginLeft="20dip"-->
+                <!--android:clickable="true"-->
+                <!--android:gravity="center|left"-->
+                <!--android:onClick="gaojingtishi"-->
+                <!--android:text="告警提示 : 开"-->
+                <!--android:textColor="@color/Black"-->
+                <!--android:textColorHint="@color/Gray"-->
+                <!--android:textSize="@dimen/Two_word" />-->
+            <!--<TextView-->
+                <!--android:id="@+id/gjts"-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="60dip"-->
+                <!--android:layout_marginLeft="20dip"-->
+                <!--android:clickable="true"-->
+                <!--android:gravity="center|left"-->
+                <!--android:text="告警提示 : 开"-->
+                <!--android:textColor="@color/Black"-->
+                <!--android:textColorHint="@color/Gray"-->
+                <!--android:textSize="@dimen/Two_word" />-->
+            <!--<TextView-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="1dp"-->
+                <!--android:background="@color/Gray" />-->
+
+            <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                <!--&lt;!&ndash;android:id="@+id/lpaqfw"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_width="fill_parent"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_height="60dip"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_marginLeft="20dip"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:clickable="true"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:gravity="center|left"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:onClick="lpaqfw"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:text="范围报警 : 开"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:textColor="@color/Black"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:textColorHint="@color/Gray"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:textSize="@dimen/Two_word" />&ndash;&gt;-->
+            <!--<TextView-->
+                <!--android:id="@+id/lpaqfw"-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="60dip"-->
+                <!--android:layout_marginLeft="20dip"-->
+                <!--android:clickable="true"-->
+                <!--android:gravity="center|left"-->
+                <!--android:text="范围报警 : 开"-->
+                <!--android:textColor="@color/Black"-->
+                <!--android:textColorHint="@color/Gray"-->
+                <!--android:textSize="@dimen/Two_word" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="1dp"-->
+                <!--android:background="@color/Gray" />-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dip"
+                    android:layout_marginLeft="20dip"
+                    android:clickable="true"
+                    android:gravity="center|left"
+                    android:text="工作模式："
+                    android:textColor="@color/Black"
+                    android:textColorHint="@color/Gray"
+                    android:textSize="@dimen/Two_word" />
+
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:textSize="@dimen/Two_word"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp">
+
+                </Spinner>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Gray" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="60dip"
+                android:layout_marginLeft="20dip"
+                android:clickable="true"
+                android:gravity="center|left"
+                android:text="报警设置"
+                android:id="@+id/setting_bjsz"
+                android:textColor="@color/Black"
+                android:textColorHint="@color/Gray"
+                android:textSize="@dimen/Two_word" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Gray" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="60dip"
+                android:layout_marginLeft="20dip"
+                android:clickable="true"
+                android:gravity="center|left"
+                android:text="海渔平台：开"
+                android:textColor="@color/Black"
+                android:textColorHint="@color/Gray"
+                android:textSize="@dimen/Two_word"
+                android:id="@+id/hypt"/>
+            <!--<TextView-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="60dip"-->
+                <!--android:layout_marginLeft="20dip"-->
+                <!--android:clickable="true"-->
+                <!--android:gravity="center|left"-->
+                <!--android:onClick="hypt"-->
+                <!--android:text="海鱼平台：开"-->
+                <!--android:textColor="@color/Black"-->
+                <!--android:textColorHint="@color/Gray"-->
+                <!--android:textSize="@dimen/Two_word"-->
+                <!--android:id="@+id/hypt"/>-->
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Gray" />
+
+            <LinearLayout
+                android:id="@+id/setting_ll"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dip"
+                    android:layout_marginLeft="20dip"
+                    android:clickable="true"
+                    android:gravity="center|left"
+                    android:text="智能设置："
+                    android:textColor="@color/Black"
+                    android:textColorHint="@color/Gray"
+                    android:textSize="@dimen/Two_word" />
+
+                <RadioGroup
+                    android:id="@+id/genderGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center|left"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rb1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="1海里"
+                        android:textSize="@dimen/four_word" />
+
+                    <RadioButton
+                        android:id="@+id/rb2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="2海里"
+                        android:textSize="@dimen/four_word" />
+
+                    <RadioButton
+                        android:id="@+id/rb3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="3海里"
+                        android:textSize="@dimen/four_word" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Gray" />
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dip"
+                    android:layout_marginLeft="20dip"
+                    android:clickable="true"
+
+                    android:gravity="center|left"
+                    android:onClick="aaa"
+                    android:text="快捷键1："
+                    android:textColor="@color/Black"
+                    android:textColorHint="@color/Gray"
+                    android:textSize="@dimen/Two_word" />
+
+                <Spinner
+                    android:id="@+id/spinner3"
+                    android:textSize="@dimen/Two_word"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp">
+
+                </Spinner>
+            </LinearLayout>
+
+
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Gray" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dip"
+                    android:layout_marginLeft="20dip"
+                    android:clickable="true"
+                    android:gravity="center|left"
+                    android:text="快捷键2："
+                    android:textColor="@color/Black"
+                    android:textColorHint="@color/Gray"
+                    android:textSize="@dimen/Two_word" />
+
+                <Spinner
+                    android:textSize="@dimen/Two_word"
+                    android:id="@+id/spinner2"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp">
+
+                </Spinner>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Gray" />
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="60dp"-->
+                <!--android:orientation="horizontal">-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="60dip"-->
+                    <!--android:layout_marginLeft="20dip"-->
+                    <!--android:clickable="true"-->
+                    <!--android:gravity="center|left"-->
+                    <!--android:text="告警设置："-->
+                    <!--android:textColor="@color/Black"-->
+                    <!--android:textColorHint="@color/Gray"-->
+                    <!--android:textSize="@dimen/Two_word" />-->
+
+                <!--<CheckBox-->
+                    <!--android:id="@+id/cb_sgbj"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:text="闪光"-->
+                    <!--android:textSize="@dimen/Two_word" />-->
+
+                <!--<CheckBox-->
+                    <!--android:id="@+id/cb_ypbj"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:text="音频"-->
+                    <!--android:textSize="@dimen/Two_word" />-->
+
+                <!--<CheckBox-->
+                    <!--android:id="@+id/cb_zdbj"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:text="震动"-->
+                    <!--android:textSize="@dimen/Two_word" />-->
+            <!--</LinearLayout>-->
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Gray" />
+
+            <!--<TextView-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="60dip"-->
+                <!--android:layout_marginLeft="20dip"-->
+                <!--android:clickable="true"-->
+                <!--android:gravity="center|left"-->
+                <!--android:onClick="update"-->
+                <!--android:id="@+id/setting_jcgx"-->
+                <!--android:text="检查更新"-->
+                <!--android:textColor="@color/Black"-->
+                <!--android:textColorHint="@color/Gray"-->
+                <!--android:textSize="@dimen/Two_word" />-->
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="60dip"
+                android:layout_marginLeft="20dip"
+                android:clickable="true"
+                android:gravity="center|left"
+                android:id="@+id/setting_jcgx"
+                android:text="检查更新       1.4A"
+                android:textColor="@color/Black"
+                android:textColorHint="@color/Gray"
+                android:textSize="@dimen/Two_word" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/ll_title"
+    android:layout_alignParentTop="true"
+android:background="@color/Blue"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="0dip"
+        android:layout_height="50dip"
+
+        android:layout_gravity="bottom"
+        android:onClick="onBackPress"
+        android:clickable="true"
+        android:gravity="center|left"
+        android:orientation="horizontal"
+        android:id="@+id/ll_title_left">
+<ImageView
+    android:paddingTop="5dip"
+    android:paddingBottom="5dip"
+    android:id="@+id/iv_back"
+    android:layout_width="40dip"
+    android:layout_height="40dip"
+    android:src="@drawable/back"
+
+    />
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="24sp"
+            android:text="返回"
+            android:textColor="@color/White"
+            android:layout_height="wrap_content" />
+
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_weight="2"
+        android:layout_width="0dip"
+        android:layout_height="50dip"
+
+        android:layout_gravity="bottom"
+
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:id="@+id/ll_title_content">
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:textSize="24sp"
+    android:id="@+id/tv_title"
+    android:textColor="@color/AllWhite"
+    android:text="首页"
+    />
+        <ImageView
+            android:layout_width="30dip"
+            android:layout_height="30dip"
+            android:gravity="center"
+            android:visibility="gone"
+            android:id="@+id/iv_title"
+
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="0dip"
+        android:layout_height="50dip"
+        android:gravity="center|right"
+        android:layout_gravity="bottom"
+
+       android:paddingRight="10dip"
+        android:orientation="horizontal"
+        android:id="@+id/ll_title_right">
+        <TextView
+
+android:paddingTop="5dip"
+android:textColor="@color/AllWhite"
+            android:paddingBottom="5dip"
+            android:id="@+id/tv_right"
+            android:layout_width="match_parent"
+            android:layout_height="30dip"
+            android:gravity="center|right"
+            android:text="船只:"
+android:textSize="18dp"
+            />
+    </LinearLayout>
+</LinearLayout>

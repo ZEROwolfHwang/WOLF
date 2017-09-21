@@ -1,0 +1,1094 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dip"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/AllWhite">
+
+            <TextView
+                android:id="@+id/tv_line1"
+                android:layout_width="fill_parent"
+
+                android:layout_height="0.01dip"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:layout_marginTop="20dip"
+                android:background="@color/Gray" />
+
+            <LinearLayout
+                android:id="@+id/ll_mmsi"
+                android:layout_width="fill_parent"
+
+
+                android:layout_height="40dip"
+                android:layout_below="@+id/tv_line1"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:orientation="vertical">
+
+                <LinearLayout
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="39dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="20dip"
+                        android:gravity="center|left"
+                        android:text="20：地效翼船"
+                        android:textColor="@color/Black"
+                        android:textColorHint="@color/Gray"
+                        android:textSize="@dimen/three_word"
+
+                        />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_line2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.01dip"
+
+                    android:background="@color/Gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_ship_name"
+                android:layout_width="fill_parent"
+                android:layout_height="40dip"
+                android:layout_below="@+id/ll_mmsi"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:orientation="vertical">
+
+                <LinearLayout
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="39dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:id="@+id/tv_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="20dip"
+                        android:gravity="center|left"
+                        android:text="21～24：危险翼船"
+                        android:textColor="@color/Black"
+                        android:textColorHint="@color/Gray"
+
+                        android:textSize="@dimen/three_word" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_line3"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.01dip"
+
+                    android:background="@color/Gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_ship__chinese_name"
+                android:layout_width="fill_parent"
+
+
+                android:layout_height="40dip"
+                android:layout_below="@+id/ll_ship_name"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:orientation="vertical">
+
+                <LinearLayout
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="39dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="20dip"
+                        android:gravity="center|left"
+                        android:text="30：渔船"
+                        android:textColor="@color/Black"
+                        android:textColorHint="@color/Gray"
+                        android:textSize="@dimen/three_word"
+
+                        />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_line29"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.01dip"
+
+                    android:background="@color/Gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_huhao"
+                android:layout_width="fill_parent"
+
+
+                android:layout_height="40dip"
+                android:layout_below="@+id/ll_ship__chinese_name"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:orientation="vertical">
+
+                <LinearLayout
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="39dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="20dip"
+                        android:gravity="center|left"
+                        android:text="31：拖带船"
+                        android:textColor="@color/Black"
+                        android:textColorHint="@color/Gray"
+                        android:textSize="@dimen/three_word"
+
+                        />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_line5"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.01dip"
+
+                    android:background="@color/Gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_type"
+                android:layout_width="fill_parent"
+
+
+                android:layout_height="40dip"
+                android:layout_below="@+id/ll_huhao"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:orientation="vertical">
+
+                <LinearLayout
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="39dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="20dip"
+                        android:gravity="center|left"
+                        android:text="32：大拖带船"
+                        android:textColor="@color/Black"
+                        android:textColorHint="@color/Gray"
+                        android:textSize="@dimen/three_word"
+
+                        />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_line6"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.01dip"
+
+                    android:background="@color/Gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_A"
+                android:layout_width="fill_parent"
+
+
+                android:layout_height="40dip"
+                android:layout_below="@+id/ll_type"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:orientation="vertical">
+
+                <LinearLayout
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="39dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="20dip"
+                        android:gravity="center|left"
+                        android:text="33：疏浚船"
+                        android:textColor="@color/Black"
+                        android:textColorHint="@color/Gray"
+                        android:textSize="@dimen/three_word"
+
+                        />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_line7"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.01dip"
+
+                    android:background="@color/Gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_B"
+                android:layout_width="fill_parent"
+
+
+                android:layout_height="40dip"
+                android:layout_below="@+id/ll_A"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:orientation="vertical">
+
+                <LinearLayout
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="39dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="20dip"
+                        android:gravity="center|left"
+                        android:text="34：潜水船"
+                        android:textColor="@color/Black"
+                        android:textColorHint="@color/Gray"
+                        android:textSize="@dimen/three_word"
+
+                        />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_line8"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.01dip"
+
+                    android:background="@color/Gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_C"
+                android:layout_width="fill_parent"
+
+
+                android:layout_height="40dip"
+                android:layout_below="@+id/ll_B"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:orientation="vertical">
+
+                <LinearLayout
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="39dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="20dip"
+                        android:gravity="center|left"
+                        android:text="35: 军事船"
+                        android:textColor="@color/Black"
+                        android:textColorHint="@color/Gray"
+                        android:textSize="@dimen/three_word"
+
+                        />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_line9"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.01dip"
+
+                    android:background="@color/Gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_fw"
+                android:layout_width="fill_parent"
+
+
+                android:layout_height="40dip"
+                android:layout_below="@+id/ll_C"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:orientation="vertical">
+
+                <LinearLayout
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="39dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="20dip"
+                        android:gravity="center|left"
+                        android:text="36: 帆船"
+                        android:textColor="@color/Black"
+                        android:textColorHint="@color/Gray"
+                        android:textSize="@dimen/three_word"
+
+                        />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_line10"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.01dip"
+
+                    android:background="@color/Gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_hs"
+                android:layout_width="fill_parent"
+
+
+                android:layout_height="40dip"
+                android:layout_below="@+id/ll_fw"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:orientation="vertical">
+
+                <LinearLayout
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="39dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="20dip"
+                        android:gravity="center|left"
+                        android:text="37: 游艇"
+                        android:textColor="@color/Black"
+                        android:textColorHint="@color/Gray"
+                        android:textSize="@dimen/three_word"
+
+                        />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_line12"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.01dip"
+
+                    android:background="@color/Gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_distance"
+                android:layout_width="fill_parent"
+
+
+                android:layout_height="40dip"
+                android:layout_below="@+id/ll_hs"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:orientation="vertical">
+
+                <LinearLayout
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="39dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="20dip"
+                        android:gravity="center|left"
+                        android:text="40: 高速船"
+                        android:textColor="@color/Black"
+                        android:textColorHint="@color/Gray"
+                        android:textSize="@dimen/three_word"
+
+                        />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_line14"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.01dip"
+
+                    android:background="@color/Gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_chuan_shou"
+                android:layout_width="fill_parent"
+
+
+                android:layout_height="40dip"
+                android:layout_below="@+id/ll_distance"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:orientation="vertical">
+
+                <LinearLayout
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="39dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="20dip"
+                        android:gravity="center|left"
+                        android:text="41～44: 危险高速"
+                        android:textColor="@color/Black"
+                        android:textColorHint="@color/Gray"
+                        android:textSize="@dimen/three_word"
+
+                        />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_line13"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.01dip"
+
+                    android:background="@color/Gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_jing_du"
+                android:layout_width="fill_parent"
+
+
+                android:layout_height="40dip"
+                android:layout_below="@+id/ll_chuan_shou"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:orientation="vertical">
+
+                <LinearLayout
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="39dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="20dip"
+                        android:gravity="center|left"
+                        android:text="50: 引航船"
+                        android:textColor="@color/Black"
+                        android:textColorHint="@color/Gray"
+                        android:textSize="@dimen/three_word"
+
+                        />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_line15"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.01dip"
+
+                    android:background="@color/Gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_zhuan_xiang"
+                android:layout_width="fill_parent"
+
+
+                android:layout_height="40dip"
+                android:layout_below="@+id/ll_jing_du"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:orientation="vertical">
+
+                <LinearLayout
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="39dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="20dip"
+                        android:gravity="center|left"
+                        android:text="51: 搜救船"
+                        android:textColor="@color/Black"
+                        android:textColorHint="@color/Gray"
+                        android:textSize="@dimen/three_word"
+
+                        />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_line18"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.01dip"
+                    android:background="@color/Gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_zhuang_tai"
+                android:layout_width="fill_parent"
+                android:layout_height="40dip"
+                android:layout_below="@+id/ll_zhuan_xiang"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:orientation="vertical">
+
+                <LinearLayout
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="39dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="20dip"
+                        android:gravity="center|left"
+                        android:text="52: 拖轮"
+                        android:textColor="@color/Black"
+                        android:textColorHint="@color/Gray"
+                        android:textSize="@dimen/three_word"
+
+                        />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_line17"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.01dip"
+
+                    android:background="@color/Gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_ship_length"
+                android:layout_width="fill_parent"
+
+
+                android:layout_height="40dip"
+                android:layout_below="@+id/ll_zhuang_tai"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:orientation="vertical">
+
+                <LinearLayout
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="39dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="20dip"
+                        android:gravity="center|left"
+                        android:text="53: 港口供应"
+                        android:textColor="@color/Black"
+                        android:textColorHint="@color/Gray"
+                        android:textSize="@dimen/three_word"
+
+                        />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_line19"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.01dip"
+
+                    android:background="@color/Gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_ship_width"
+                android:layout_width="fill_parent"
+
+
+                android:layout_height="40dip"
+                android:layout_below="@+id/ll_ship_length"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:orientation="vertical">
+
+                <LinearLayout
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="39dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="20dip"
+                        android:gravity="center|left"
+                        android:text="54: 防污船舶"
+                        android:textColor="@color/Black"
+                        android:textColorHint="@color/Gray"
+                        android:textSize="@dimen/three_word"
+
+                        />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_line20"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.01dip"
+
+                    android:background="@color/Gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_country"
+                android:layout_width="fill_parent"
+                android:layout_height="40dip"
+                android:layout_below="@+id/ll_ship_width"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:orientation="vertical">
+
+                <LinearLayout
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="39dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_county"
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="20dip"
+                        android:gravity="center|left"
+                        android:text="55: 执法船"
+                        android:textColor="@color/Black"
+                        android:textColorHint="@color/Gray"
+                        android:textSize="@dimen/three_word"
+
+                        />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_line21"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.01dip"
+
+                    android:background="@color/Gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll1"
+                android:layout_width="fill_parent"
+                android:layout_height="40dip"
+                android:layout_below="@+id/ll_country"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/ll_type1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="39dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="20dip"
+                        android:gravity="center|left"
+                        android:text="58: 医疗船"
+                        android:textColor="@color/Black"
+                        android:textColorHint="@color/Gray"
+                        android:textSize="@dimen/three_word"
+
+                        />
+
+                </LinearLayout>
+
+                <TextView
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.01dip"
+
+                    android:background="@color/Gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll2"
+                android:layout_width="fill_parent"
+                android:layout_height="40dip"
+                android:layout_below="@+id/ll1"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:orientation="vertical">
+
+                <LinearLayout
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="39dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="20dip"
+                        android:gravity="center|left"
+                        android:text="60: 客船"
+                        android:textColor="@color/Black"
+                        android:textColorHint="@color/Gray"
+                        android:textSize="@dimen/three_word"
+
+                        />
+
+                </LinearLayout>
+
+                <TextView
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.01dip"
+
+                    android:background="@color/Gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll3"
+                android:layout_width="fill_parent"
+                android:layout_height="40dip"
+                android:layout_below="@+id/ll2"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:orientation="vertical">
+
+                <LinearLayout
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="39dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="20dip"
+                        android:gravity="center|left"
+                        android:text="61～64: 危险客船"
+                        android:textColor="@color/Black"
+                        android:textColorHint="@color/Gray"
+                        android:textSize="@dimen/three_word"
+
+                        />
+
+                </LinearLayout>
+
+                <TextView
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.01dip"
+
+                    android:background="@color/Gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll4"
+                android:layout_width="fill_parent"
+                android:layout_height="40dip"
+                android:layout_below="@+id/ll3"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:orientation="vertical">
+
+                <LinearLayout
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="39dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="20dip"
+                        android:gravity="center|left"
+                        android:text="70: 货船"
+                        android:textColor="@color/Black"
+                        android:textColorHint="@color/Gray"
+                        android:textSize="@dimen/three_word"
+
+                        />
+
+                </LinearLayout>
+
+                <TextView
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.01dip"
+
+                    android:background="@color/Gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll5"
+                android:layout_width="fill_parent"
+                android:layout_height="40dip"
+                android:layout_below="@+id/ll4"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:orientation="vertical">
+
+                <LinearLayout
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="39dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="20dip"
+                        android:gravity="center|left"
+                        android:text="71～74: 危险货船"
+                        android:textColor="@color/Black"
+                        android:textColorHint="@color/Gray"
+                        android:textSize="@dimen/three_word"
+
+                        />
+
+                </LinearLayout>
+
+                <TextView
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.01dip"
+
+                    android:background="@color/Gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll6"
+                android:layout_width="fill_parent"
+                android:layout_height="40dip"
+                android:layout_below="@+id/ll5"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:orientation="vertical">
+
+                <LinearLayout
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="39dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="20dip"
+                        android:gravity="center|left"
+                        android:text="80: 油轮"
+                        android:textColor="@color/Black"
+                        android:textColorHint="@color/Gray"
+                        android:textSize="@dimen/three_word"
+
+                        />
+
+                </LinearLayout>
+
+                <TextView
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.01dip"
+
+                    android:background="@color/Gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll7"
+                android:layout_width="fill_parent"
+                android:layout_height="40dip"
+                android:layout_below="@+id/ll6"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:orientation="vertical">
+
+                <LinearLayout
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="39dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="20dip"
+                        android:gravity="center|left"
+                        android:text="81～84: 危险油轮"
+                        android:textColor="@color/Black"
+                        android:textColorHint="@color/Gray"
+                        android:textSize="@dimen/three_word"
+
+                        />
+
+                </LinearLayout>
+
+                <TextView
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.01dip"
+
+                    android:background="@color/Gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll8"
+                android:layout_width="fill_parent"
+                android:layout_height="40dip"
+                android:layout_below="@+id/ll7"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:orientation="vertical">
+
+                <LinearLayout
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="39dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="20dip"
+                        android:gravity="center|left"
+                        android:text="90: 其他类"
+                        android:textColor="@color/Black"
+                        android:textColorHint="@color/Gray"
+                        android:textSize="@dimen/three_word"
+
+                        />
+
+                </LinearLayout>
+
+                <TextView
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.01dip"
+
+                    android:background="@color/Gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll9"
+                android:layout_width="fill_parent"
+                android:layout_height="40dip"
+                android:layout_below="@+id/ll8"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:orientation="vertical">
+
+                <LinearLayout
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="39dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="20dip"
+                        android:gravity="center|left"
+                        android:text="91～94：危险船"
+                        android:textColor="@color/Black"
+                        android:textColorHint="@color/Gray"
+                        android:textSize="@dimen/three_word"
+
+                        />
+
+                </LinearLayout>
+
+                <TextView
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.01dip"
+
+                    android:background="@color/Gray" />
+            </LinearLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/ts_ok"
+        android:layout_width="match_parent"
+        android:layout_height="60dip"
+        android:layout_alignParentBottom="true"
+        android:background="@color/Blue"
+        android:text="确定"
+        android:textColor="@color/Black"
+        android:textSize="@dimen/three_word" />
+</RelativeLayout>

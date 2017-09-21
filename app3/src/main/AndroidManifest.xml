@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.yisipu.chartmap"
+>
+<!--    android:installLocation="internalOnly"-->
+    <!--android:sharedUserId="android.uid.system"-->
+
+    <uses-permission android:name="android.permission.BATTERY_STATS" />
+   <!--调节音量-->
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!-- android:sharedUserId="android.uid.system" -->
+    <!-- android:sharedUserId="android.uid.system" -->
+    <!-- android:sharedUserId="android.uid.system" -->
+    <!--  -->
+    <!-- 在SDCard中创建与删除文件权限 -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <!-- 往SDCard写入数据权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <!-- 添加可以向外拨打电话的权限 -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL" />
+    <!-- 下载APK文件的权限 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+<!--    <instrumentation
+        android:name="android.test.instrumentationTestRunner"
+        android:label="Tests"
+        android:targetPackage="com.yisipu.chartmap" />-->
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!-- android:name="android.support.multidex.MultiDexApplication" -->
+        <!-- <uses-library android:name="com.framework.jar" /> -->
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".AisListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AisSettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AisListDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CompassDegrees"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CompassActivity"
+            android:screenOrientation="portrait" />
+
+        <service android:name=".servicer.MyDataServicer"
+            />
+        <service android:name=".servicer.DownAPKService" />
+        <!-- 在自定制的android 系统中可自启动服务! -->
+        <receiver android:name=".reciver.BootBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".SettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SosSettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SosSaveActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".GpsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CjActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".DhActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.yisipu.chartmap.CollectActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:launchMode="singleTask"
+            android:name=".ViewPagerActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".BjSettingActivity"
+             android:screenOrientation="portrait"
+           ></activity>
+        <receiver android:name="com.yisipu.chartmap.reciver.ActionReceiver">
+            <intent-filter android:priority="90000">
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+
+        </receiver>
+
+
+
+    </application>
+
+</manifest>

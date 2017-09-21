@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/itemlayout"
+    android:background="@color/White2"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical" >
+    <com.yisipu.chartmap.ui.VerticalProgressBar
+        android:layout_marginTop="10dip"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/pb_progressbar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="15dip"
+        android:layout_height="100dip"
+        android:max="100"
+        android:progress="30"
+        android:gravity="center"
+        android:progressDrawable="@drawable/progressbar"
+        ></com.yisipu.chartmap.ui.VerticalProgressBar>
+    <!--<com.yisipu.chartmap.ui.VerticalProgressBar-->
+        <!--android:id="@+id/pb_progressbar"-->
+        <!--style="@style/StyleProgressBarMini"-->
+        <!--android:layout_width="10dp"-->
+        <!--android:layout_weight="2"-->
+      <!--android:layout_gravity="center"-->
+        <!--android:layout_height="100dip"-->
+
+        <!--android:background="@drawable/shape_progressbar_bg"-->
+        <!--android:max="100"-->
+        <!--android:progress="50"-->
+
+        <!--android:indeterminate="false"-->
+        <!--/>-->
+
+    <TextView
+
+        android:layout_width="60dip"
+        android:layout_height="30dip"
+        android:layout_weight="1"
+        android:text="215"
+        android:textSize="15sp"
+
+        android:id="@+id/gps_id"
+        android:gravity="center"
+        android:background="@color/White2"
+        android:textColor="@color/Black"/>
+
+
+
+</LinearLayout>

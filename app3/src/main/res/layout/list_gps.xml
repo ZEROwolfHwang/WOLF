@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/White2">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dip"
+        android:orientation="horizontal"
+        android:background="@color/White2">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="卫星编号：215"
+            android:textSize="15sp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/gps_id"
+            android:gravity="center_vertical"
+            android:background="@color/White2"
+            android:textColor="@color/Black"/>
+        <!--<TextView-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="信噪比：215"-->
+            <!--android:textSize="10sp"-->
+            <!--android:id="@+id/gps_snr"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:background="@color/White2"/>-->
+        <ProgressBar
+            android:id="@+id/pb_progressbar"
+            style="@style/StyleProgressBarMini"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_marginRight="20dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_progressbar_bg"
+            android:max="100"
+            android:progress="50"
+            android:layout_gravity="center"
+            android:indeterminate="false"
+            />
+    </LinearLayout>
+</LinearLayout>

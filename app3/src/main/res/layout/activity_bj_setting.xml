@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.yisipu.chartmap.BjSettingActivity">
+    <TextView
+        android:layout_marginLeft="20dip"
+        android:id="@+id/gjts"
+        android:layout_width="fill_parent"
+        android:layout_height="60dip"
+
+        android:clickable="true"
+        android:gravity="center|left"
+        android:text="告警提示 : 开"
+        android:textColor="@color/Black"
+        android:textColorHint="@color/Gray"
+        android:textSize="@dimen/Two_word" />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/Gray" />
+
+    <!--<TextView-->
+    <!--android:id="@+id/lpaqfw"-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="60dip"-->
+    <!--android:layout_marginLeft="20dip"-->
+    <!--android:clickable="true"-->
+    <!--android:gravity="center|left"-->
+    <!--android:onClick="lpaqfw"-->
+    <!--android:text="范围报警 : 开"-->
+    <!--android:textColor="@color/Black"-->
+    <!--android:textColorHint="@color/Gray"-->
+    <!--android:textSize="@dimen/Two_word" />-->
+    <TextView
+        android:layout_marginLeft="20dip"
+        android:id="@+id/lpaqfw"
+        android:layout_width="fill_parent"
+        android:layout_height="60dip"
+
+        android:clickable="true"
+        android:gravity="center|left"
+        android:text="范围报警 : 开"
+        android:textColor="@color/Black"
+        android:textColorHint="@color/Gray"
+        android:textSize="@dimen/Two_word" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/Gray" />
+    <LinearLayout
+        android:layout_marginLeft="20dip"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="60dip"
+            android:layout_gravity="center"
+            android:layout_marginRight="20dip"
+            android:gravity="center"
+            android:text="速度过滤"
+            android:textColor="@color/Black"
+            android:textColorHint="@color/Gray"
+            android:textSize="@dimen/Two_word"
+
+            />
+
+        <EditText
+            android:id="@+id/bj_sdgl"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@null"
+            android:clickable="true"
+            android:hint="请输入0.1～1.0"
+            android:inputType="numberDecimal"
+            android:maxLength="9"
+            android:textColor="@color/Black"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+    <TextView
+
+        android:layout_width="fill_parent"
+        android:layout_height="0.01dip"
+        android:background="@color/Gray" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_marginLeft="20dip"
+            android:layout_width="wrap_content"
+            android:layout_height="60dip"
+            android:clickable="true"
+            android:gravity="center|left"
+            android:text="告警设置："
+            android:textColor="@color/Black"
+            android:textColorHint="@color/Gray"
+            android:textSize="@dimen/Two_word" />
+
+        <CheckBox
+            android:id="@+id/cb_sgbj"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="闪光"
+            android:textSize="18sp" />
+
+        <CheckBox
+            android:id="@+id/cb_ypbj"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="音频"
+            android:textSize="18sp" />
+
+        <CheckBox
+            android:id="@+id/cb_zdbj"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="震动"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+
+    <TextView
+
+        android:layout_width="fill_parent"
+        android:layout_height="0.01dip"
+
+        android:background="@color/Gray" />
+
+    <LinearLayout
+        android:layout_marginLeft="20dip"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="60dip"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="防碰告警："
+            android:textColor="@color/Black"
+            android:textColorHint="@color/Gray"
+            android:textSize="@dimen/Two_word" />
+
+        <CheckBox
+            android:id="@+id/cb_sgbj2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="闪光"
+            android:textSize="18sp" />
+
+        <CheckBox
+            android:id="@+id/cb_ypbj2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="音频"
+            android:textSize="18sp" />
+
+        <CheckBox
+            android:id="@+id/cb_zdbj2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="震动"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="0.01dip"
+        android:background="@color/Gray" />
+
+
+    <Button
+        android:id="@+id/bj_bcpz"
+        android:layout_width="fill_parent"
+        android:layout_height="50dip"
+        android:layout_alignLeft="@+id/ll_D"
+        android:layout_alignStart="@+id/ll_D"
+        android:layout_below="@+id/ll_D"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:layout_marginTop="100dip"
+        android:background="@color/Blue"
+        android:onClick="save_setting"
+        android:text="保存配置"
+        android:textColor="@color/White"
+        android:textSize="@dimen/Two_word" />
+</LinearLayout>

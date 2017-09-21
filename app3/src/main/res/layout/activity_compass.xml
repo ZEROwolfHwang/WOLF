@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:Android="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/AllWhite">
+
+    <LinearLayout
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="5dip"
+        android:id="@+id/ll_set"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="52dp">
+
+        <TextView
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="范围"
+            android:textColor="@color/Black"
+            android:textSize="20sp"
+
+            />
+
+        <EditText
+            android:layout_weight="1"
+            android:id="@+id/et_fanwei"
+            android:layout_width="40dip"
+            android:layout_height="wrap_content"
+            android:digits="0123456789."
+            android:gravity="center"
+            android:inputType="number"
+
+            android:text="6"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="nm"
+            android:textColor="@color/Black"
+
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:text="报警范围:"
+            android:textColor="@color/Black"
+            android:textSize="20sp" />
+
+        <EditText
+            android:layout_weight="1"
+            android:id="@+id/et_baojing"
+            android:layout_width="40dip"
+            android:layout_height="wrap_content"
+            android:digits="0123456789."
+            android:gravity="center"
+            android:inputType="number"
+            android:selectAllOnFocus="true"
+            android:text="4"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="nm"
+            android:textColor="@color/Black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="防碰范围"
+            android:textColor="@color/Black"
+            android:textSize="@dimen/activity_vertical_margin"
+            android:layout_marginLeft="5dip"
+            />
+
+        <EditText
+            android:visibility="gone"
+            android:id="@+id/et_fpjl"
+            android:layout_width="40dip"
+            android:layout_height="wrap_content"
+            android:digits="0123456789."
+            android:gravity="center"
+            android:inputType="number"
+            android:selectAllOnFocus="true"
+            android:text="100"
+            android:textSize="@dimen/activity_vertical_margin" />
+        <TextView
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="m"
+            android:textColor="@color/Black"
+
+            android:textSize="@dimen/activity_vertical_margin" />
+
+    </LinearLayout>
+
+
+
+    <com.yisipu.chartmap.surfaceView.MyCompass
+        android:id="@+id/sceneMyC"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/ll_set">
+
+    </com.yisipu.chartmap.surfaceView.MyCompass>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/compass_sz"
+        android:textSize="24sp"
+        android:text="设置"
+        android:background="@color/Blue"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+
+</RelativeLayout>
+

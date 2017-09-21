@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.yisipu.chartmap.GpsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/White2"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="状态:"
+                android:textColor="@color/Black"
+                android:textSize="23sp" />
+
+            <TextView
+                android:id="@+id/gps_state"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="未定位"
+                android:textColor="@color/red"
+                android:textSize="30sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/Gray" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="水平精度:"
+                android:textColor="@color/Black"
+                android:textSize="23sp" />
+
+            <TextView
+                android:id="@+id/gps_hdop"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="0.0"
+                android:textColor="@color/Black"
+                android:textSize="30sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/Gray" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="位置精度："
+                android:textColor="@color/Black"
+                android:textSize="23sp" />
+
+            <TextView
+                android:id="@+id/gps_pdop"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="0.0"
+                android:textColor="@color/Black"
+                android:textSize="30sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/Gray" />
+
+    <com.yisipu.chartmap.surfaceView.SatellitesView
+        android:id="@+id/satellitesView"
+        android:layout_width="match_parent"
+        android:layout_height="350dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/Gray" />
+
+    <ListView
+        android:id="@+id/gps_lv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/White2">
+
+    </ListView>
+    <!--<HorizontalScrollView-->
+        <!--android:background="@color/White2"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_margin="5dp" >-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="fill_parent"-->
+            <!--android:layout_margin="10dp" >-->
+
+            <!--<GridView-->
+                <!--android:id="@+id/grid"-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="fill_parent"-->
+                <!--android:gravity="center"-->
+
+                <!--android:numColumns="auto_fit"-->
+                <!--android:stretchMode="spacingWidthUniform" >-->
+            <!--</GridView>-->
+        <!--</LinearLayout>-->
+    <!--</HorizontalScrollView>-->
+</LinearLayout>

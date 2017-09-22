@@ -63,9 +63,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".AisListActivity"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".AisSettingActivity"
             android:screenOrientation="portrait" />
@@ -74,9 +72,6 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".CompassDegrees"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".CompassActivity"
             android:screenOrientation="portrait" />
 
         <service android:name=".servicer.MyDataServicer"
@@ -94,16 +89,10 @@
         </receiver>
 
         <activity
-            android:name=".SettingActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".SosSettingActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".SosSaveActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".GpsActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".LsActivity"
@@ -124,8 +113,9 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".BjSettingActivity"
-             android:screenOrientation="portrait"
-           ></activity>
+             android:screenOrientation="portrait">
+
+        </activity>
         <receiver android:name="com.yisipu.chartmap.reciver.ActionReceiver">
             <intent-filter android:priority="90000">
                 <action android:name="android.intent.action.USER_PRESENT" />

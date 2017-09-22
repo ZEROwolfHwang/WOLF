@@ -1,7 +1,5 @@
 package com.yisipu.chartmap;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -9,7 +7,6 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,29 +72,17 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
      */
     public BroadcastReceiver AisBroadcast = new BroadcastReceiver() {
 
-
         @Override
         public void onReceive(Context context, Intent intent) {
-            //拿到进度，更新UI
-//            int progress = intent.getIntExtra("progress", 0);
-//            mProgressBar.setProgress(progress);
-
             String a = intent.getStringExtra("selectMMsi");
             if (a != null) {
                 receiver(a);
             }
-//            String b = intent.getStringExtra("gps");
-//            if (b != null) {
-//               gps(b);
-//
-//            }
-            Gpsbean gpsbean = new Gpsbean();
-            gpsbean = (Gpsbean) intent.getSerializableExtra("gps");
+            Gpsbean gpsbean = (Gpsbean) intent.getSerializableExtra("gps");
             if (gpsbean != null) {
                 gpsreceiver(gpsbean);
             }
-            Jdbean jdbean = new Jdbean();
-            jdbean = (Jdbean) intent.getSerializableExtra("pdop");
+            Jdbean jdbean = (Jdbean) intent.getSerializableExtra("pdop");
             if (jdbean != null) {
                 hdopreceiver (jdbean);
             }

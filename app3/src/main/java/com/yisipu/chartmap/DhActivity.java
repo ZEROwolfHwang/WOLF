@@ -171,7 +171,6 @@ public class DhActivity extends SerialPortActivity {
 
     private final Handler mHandler = new Handler();
     private boolean isUartPass = false;
-    private UatrTest mUartTest;
     private TextView tv_jing_weidu;
     private LocationManager locationManager = null;
     //    private LocationListener locationListener = null;
@@ -429,19 +428,7 @@ public class DhActivity extends SerialPortActivity {
 
     List<ShipBean> ls = null;
 
-    public void goToLuopan(View view) {
-        Intent intent = new Intent(DhActivity.this, CompassActivity.class);
-        startActivity(intent);
-//        Intent intent=new Intent(MainActivity.this,CompassDegrees.class);
-//        startActivity(intent);
-    }
 
-    public void goToGPS(View view) {
-        Intent intent = new Intent(DhActivity.this, GpsActivity.class);
-        startActivity(intent);
-//        Intent intent=new Intent(MainActivity.this,CompassDegrees.class);
-//        startActivity(intent);
-    }
 
     Bitmap b;
 

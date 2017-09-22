@@ -165,7 +165,6 @@ public class CjActivity extends SerialPortActivity {
     private static final String TAG = CjActivity.class.getSimpleName();
     private final Handler mHandler = new Handler();
     private boolean isUartPass = false;
-    private UatrTest mUartTest;
     private TextView tv_jing_weidu;
     private LocationManager locationManager = null;
     private GpsStatus.NmeaListener nmeaListener = null;
@@ -287,16 +286,6 @@ public class CjActivity extends SerialPortActivity {
     }
 
     List<ShipBean> ls = null;
-
-    public void goToLuopan(View view) {
-        Intent intent = new Intent(CjActivity.this, CompassActivity.class);
-        startActivity(intent);
-    }
-
-    public void goToGPS(View view) {
-        Intent intent = new Intent(CjActivity.this, GpsActivity.class);
-        startActivity(intent);
-    }
 
     Bitmap b;
 

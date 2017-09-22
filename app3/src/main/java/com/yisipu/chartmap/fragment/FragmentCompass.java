@@ -192,7 +192,7 @@ public class FragmentCompass extends Fragment implements SensorEventListener, Vi
                         editor.putFloat("fanwei", (float) d);
                         editor.commit();
                         Toast.makeText(getActivity(), "设置成功", Toast.LENGTH_SHORT).show();
-                        ((InputMethodManager) mActivity.getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(mActivity.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                 //       ((InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                     } else {
                         Toast.makeText(getActivity(), "显示范围只能设置在0.5到10海里之间,同时必须比报警范围大", Toast.LENGTH_SHORT).show();
 

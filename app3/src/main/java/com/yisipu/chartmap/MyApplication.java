@@ -1,8 +1,6 @@
 package com.yisipu.chartmap;
 
-import android.content.Context;
-import android.support.multidex.MultiDex;
-import android.support.multidex.MultiDexApplication;
+import android.app.Application;
 
 import com.orhanobut.logger.LogLevel;
 import com.orhanobut.logger.Logger;
@@ -10,7 +8,7 @@ import com.orhanobut.logger.Logger;
 /**
  * Created by Administrator on 2016/9/5 0005.
  */
-public class MyApplication extends MultiDexApplication {
+public class MyApplication extends Application {
     public static MyApplication sApplication;
     private static final String TAG = "YuChuan3";
 
@@ -26,9 +24,9 @@ public class MyApplication extends MultiDexApplication {
         // TODO Auto-generated method stub
         return sApplication;
     }
-    @Override
+  /*  @Override
     protected void attachBaseContext(Context base){
         super.attachBaseContext(base);
         MultiDex.install(this);
-    }
+    }*/
 }

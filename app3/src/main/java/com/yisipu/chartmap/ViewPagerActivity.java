@@ -94,9 +94,9 @@ public class ViewPagerActivity extends SerialPortActivity {
                 if(adapter==null) {
                     adapter = new PagerAdapter(getSupportFragmentManager());
                     pager.setAdapter(adapter);
-                    pager.setOffscreenPageLimit(5);
+//                    pager.setOffscreenPageLimit(5);
                     // 监听页面变化
-                    pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                  /*  pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
                         @Override
                         public void onPageSelected(int arg0) {
@@ -125,7 +125,7 @@ public class ViewPagerActivity extends SerialPortActivity {
                         @Override
                         public void onPageScrollStateChanged(int arg0) {
                         }
-                    });
+                    });*/
                 }
                 if(pager.getCurrentItem()!=1) {
                     setCurrentPage(1);

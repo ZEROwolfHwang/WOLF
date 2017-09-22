@@ -585,11 +585,6 @@ public class MainActivity extends SerialPortActivity {
     }
 
 
-    public void goToGPS(View view) {
-        Intent intent = new Intent(MainActivity.this, GpsActivity.class);
-        startActivity(intent);
-    }
-
     Bitmap b;
     Bitmap line_chuanshou, line_chuanshou2, line_chuanshou3;
     String collect_name = null;
@@ -2448,18 +2443,7 @@ public class MainActivity extends SerialPortActivity {
             tv1.setText("经度：" + jingdu);
             tv2.setText("纬度：" + weidu);
         }
-//        switch (x1) {
-//            case 1:
-//                dw.setText("未定位");
-//                dw.setTextColor(Color.RED);
-//                break;
-//            case 2:
-//                dw.setText("定位");
-////                        pdoptv.setText("位置精度：" + pdop);
-//                dw.setTextColor(Color.GREEN);
-//
-//                break;
-//        }
+
         sp = getSharedPreferences("sp", MODE_PRIVATE);
         int sfdw = sp.getInt("sfdw", 1);
         if (sfdw == 1) {

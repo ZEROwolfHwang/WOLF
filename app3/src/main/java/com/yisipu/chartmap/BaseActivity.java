@@ -43,6 +43,9 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
         if (isSetBaseContent) {
             setContentView(R.layout.activity_base);
             findView();

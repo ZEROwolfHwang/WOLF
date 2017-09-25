@@ -17,7 +17,9 @@
         android:progress="30"
         android:gravity="center"
         android:progressDrawable="@drawable/progressbar"
-        ></com.yisipu.chartmap.ui.VerticalProgressBar>
+        >
+
+    </com.yisipu.chartmap.ui.VerticalProgressBar>
     <!--<com.yisipu.chartmap.ui.VerticalProgressBar-->
         <!--android:id="@+id/pb_progressbar"-->
         <!--style="@style/StyleProgressBarMini"-->

@@ -46,4 +46,14 @@ public class Jdbean implements Serializable {
     public void setSateInList(List<Integer> sateInList) {
         this.sateInList = sateInList;
     }
+
+    @Override
+    public String toString() {
+        return "Jdbean{" +
+                "pdop='" + pdop + '\'' +
+                ", hdop='" + hdop + '\'' +
+                ", sfdw='" + sfdw + '\'' +
+                ", sateInList=" + sateInList +
+                '}';
+    }
 }

@@ -1,6 +1,7 @@
 package com.yisipu.chartmap.servicer;
 
 
+import android.Manifest;
 import android.app.ActivityManager;
 import android.app.KeyguardManager;
 import android.app.Service;
@@ -10,6 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.location.GpsStatus;
 import android.location.Location;
 import android.location.LocationListener;
@@ -23,7 +25,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
-import android.os.Looper;
 import android.os.Message;
 import android.os.PowerManager;
 import android.os.RemoteException;
@@ -31,6 +32,7 @@ import android.os.ServiceManager;
 import android.os.UEventObserver;
 import android.os.Vibrator;
 import android.provider.AlarmClock;
+import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
@@ -578,11 +580,9 @@ public class MyDataServicer extends Service {
                             Logger.i("'s battery feels very hot!" + level);
                             if (level <= 33) {
 
-                            }
-                            else if (level <= 84) {
+                            } else if (level <= 84) {
 
-                            }
-                            else {
+                            } else {
 
                             }
 
@@ -738,7 +738,6 @@ public class MyDataServicer extends Service {
         }
         try {
             pdkj();
-
             Logger.d("初始化", "初始化locationManager");
         } catch (IOException e) {
             e.printStackTrace();
@@ -907,92 +906,8 @@ public class MyDataServicer extends Service {
                             zdbs = 0;
                             y = 1;
                         }
-//                        }
                     }
-//                    else if (y == 1) {
-//                        y = 0;
-//                        isRelease = true;
-//                        setNodeString(BJ, "0");
-//                        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-//                        vibrator.cancel();
-//                        if (mPlayer != null) {
-//                            mPlayer.stop();
-//                            mPlayer.release();
-//                            mPlayer = null;
-//                        }
-//                        Intent intent16 = new Intent();
-//                        intent16.setAction(Constant.Aisaction);
-//                        intent16.putExtra("toPager","gps");
-//                        intent16.putExtra("isRuingBaoJing",0);
-//                        if(FragmentAisLctivity.BaoJingLs!=null){
-//                            FragmentAisLctivity.BaoJingLs.clear();
-//                        }
-//                        FragmentAisLctivity.isRunningBaojing=0;
-//                        sendBroadcast(intent16);
-//                        zdbs = 1;
-//                    }
                 }
-
-                //防碰距离报警
-//                if (null != sb) {
-//                    /*
-//                    罗盘防碰开关
-//                     */
-//                    lpfwkg = sp2.getString("lpaqfw", "开");
-//                    /*
-//                    告警提示
-//                     */
-//                    gjts = sp2.getString("gjts", "关");
-//                    if (gjts.equals("开")) {
-//                        /*
-//                        防碰距离
-//                         */
-//                        int fpjl = sp2.getInt("fpjl", 100);
-//                        float sdgl = sp2.getFloat("sdgl", 0.5f);
-//                        fw = sp2.getFloat("baojing", 4);
-//
-//                        List<ShipBean> ls= LocationUtils.lpbj3(getApplicationContext(), fw, db, sb.getLatitude(), sb.getLongitude(), sb.getSog(), sdgl);
-//
-////                        lppd = LocationUtils.lpbj3(getApplicationContext(), (float) fpjl / 1852, db, sb.getLatitude(), sb.getLongitude());
-//                        if (ls.size()>0) {
-//                            int spz;
-//                            DBManager db2=new DBManager(getApplicationContext());
-//                            ShipBean my=db2.getMyShip();
-//                            if(my.getSog()!=-1&&my.getReal_sudu()!=-1&&my.getLatitude()!=-1&&my.getLongitude()!=-1&&my.getLatitude()<=90&&my.getLongitude()<=180){
-//                            for(ShipBean sp:ls){
-//                                if(sp.getReal_sudu()!=-1&&sp.getSog()!=-1&&sp.getLatitude()!=-1&&sp.getLongitude()!=-1&&sp.getLatitude()<=90&&sp.getLongitude()<=180){
-//
-//                               boolean a= CollisionUtils.getIsCollision(getApplicationContext(),my.getSog()/(10.0),sp.getSog()/(10.0),my.getReal_sudu(),sp.getReal_sudu(), GetLongLati.getX(my.getLongitude(),5),GetLongLati.getY(my.getLatitude(),5),GetLongLati.getX(sp.getLongitude(),5),GetLongLati.getY(sp.getLatitude(),5));
-//                               if(a==true){
-//                                   if (zdbs2 == 1) {
-////                                       bjgs();
-//                                       fpbjgs();
-//                                       Logger.i("进入了范围报警" + lppd);
-//                                       zdbs2 = 0;
-//                                       y = 1;
-//                                   }
-//                                   break;
-//                               }
-//
-//                                }
-//                            }
-//                            }
-//
-//                        }
-//                    } else if (y == 1) {
-//                        y = 0;
-//                        isRelease = true;
-//                        setNodeString(BJ, "0");
-//                        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-//                        vibrator.cancel();
-//                        if (mPlayer != null) {
-//                            mPlayer.stop();
-//                            mPlayer.release();
-//                            mPlayer = null;
-//                        }
-//                        zdbs2 = 1;
-//                    }
-//                }
              /*
                 电子围栏
                  */
@@ -1011,7 +926,6 @@ public class MyDataServicer extends Service {
 
 
                     for (String z1 : dzwl) {
-                        Logger.i("dsgsfg" + z1);
                         String[] a = z1.split(",");
 
                         if (a.length >= 2) {
@@ -1021,14 +935,11 @@ public class MyDataServicer extends Service {
                                 if (z != -1) {
                                     x1.add(z);
                                 }
-                                Logger.i("zzhh" + z + "dgsggx:" + x1.size());
                                 if (a[1].contains("E") || a[1].contains("W")) {
                                     double z2 = ScopeUtils.getJW(a[1]);
-                                    Logger.i("sfa2" + z2);
                                     if (z != -1) {
                                         x1.add(z2);
                                     }
-                                    Logger.i("zzhh" + z2 + "dgsggx:" + x1.size());
                                     continue;
                                 } else if (a[1].contains("N") || a[1].contains("S")) {
                                     double z2 = ScopeUtils.getJW(a[1]);
@@ -1036,7 +947,6 @@ public class MyDataServicer extends Service {
                                     if (z != -1) {
                                         y1.add(z2);
                                     }
-                                    Logger.i("zzhh" + z2 + "dgsggy:" + y1.size());
                                     continue;
                                 }
                             } else if (a[0].contains("N") || a[0].contains("S")) {
@@ -1045,14 +955,11 @@ public class MyDataServicer extends Service {
                                 if (z != -1) {
                                     y1.add(z);
                                 }
-                                Logger.i("zzhh" + z + "dgsggy:" + y1.size());
                                 if (a[1].contains("E") || a[1].contains("W")) {
                                     double z2 = ScopeUtils.getJW(a[1]);
-                                    Logger.i("sfa2" + z2);
                                     if (z != -1) {
                                         x1.add(z2);
                                     }
-                                    Logger.i("zzhh" + z2 + "dgsggx:" + x1.size());
                                     continue;
                                 } else if (a[1].contains("N") || a[1].contains("S")) {
                                     double z2 = ScopeUtils.getJW(a[1]);
@@ -1060,7 +967,6 @@ public class MyDataServicer extends Service {
                                     if (z != -1) {
                                         y1.add(z2);
                                     }
-                                    Logger.i("zzhh" + z2 + "dgsggy:" + y1.size());
                                     continue;
                                 }
                             }
@@ -1072,7 +978,7 @@ public class MyDataServicer extends Service {
                 if (kg.equals("开") && sp != null && sp.getLatitude() != -1 && sp.getLongitude() != -1 && sp.getLatitude() <= 90 && sp.getLongitude() <= 180) {
                     boolean isIn = ScopeUtils.containsPoint(sp.getLongitude(), sp.getLatitude(), x1, y1);
                     if (x1.size() > 0 && y1.size() > 0) {
-                        Logger.i("fffff" + x1.size() + "xcc" + x1.get(0) + "GDF" + y1.get(0) + "dkg" + isIn);
+//                        Logger.i("fffff" + x1.size() + "xcc" + x1.get(0) + "GDF" + y1.get(0) + "dkg" + isIn);
                     }
                     if (isIn) {
                         isInDZWL = true;
@@ -1134,19 +1040,17 @@ public class MyDataServicer extends Service {
                     @Override
                     public void OnConnect(DevInfo devInfo, boolean b, short i) {
 
-                        Logger.i("saafzzzz" + b + "sgs" + i + "sf" + devInfo.getTokenCode() + "dgs" + devInfo.getClientId() +
-                                "ddj" + devInfo.getRemark() + "sg" + devInfo.getSimNo() + "dsg" + devInfo.getVin() + "dsg" + devInfo.getProvinceId() +
-                                "see" + devInfo.describeContents() + "ddd" + devInfo.getSeqId());
+//                        Logger.i("saafzzzz" + b + "sgs" + i + "sf" + devInfo.getTokenCode() + "dgs" + devInfo.getClientId() +
+//                                "ddj" + devInfo.getRemark() + "sg" + devInfo.getSimNo() + "dsg" + devInfo.getVin() + "dsg" + devInfo.getProvinceId() +
+//                                "see" + devInfo.describeContents() + "ddd" + devInfo.getSeqId());
 
                     }
 
                     @Override
                     public void OnRecData(MsgInfo msgInfo, CmdParam cmdParam) {
 
-                        Logger.i("saafddddd" + "dfgf" + msgInfo.getDataArr() + "dsg" +
-                                "dgsd" + cmdParam.getCmdId() + "dsg" + cmdParam.getSeqId() + "dg" + cmdParam.getSimNo());
-//                        SendObjTask.putData(cmdParam);
-//                        if(param.getCmdId() == ConstCmd.CMD_DOWN_TEXT_MSG)
+//                        Logger.i("saafddddd" + "dfgf" + msgInfo.getDataArr() + "dsg" +
+//                                "dgsd" + cmdParam.getCmdId() + "dsg" + cmdParam.getSeqId() + "dg" + cmdParam.getSimNo());
 
                         if (cmdParam instanceof TextMsg) {
 
@@ -1162,8 +1066,6 @@ public class MyDataServicer extends Service {
                             gps.setSimNo(SimNo);
                             gps.setLat(25);
                             gps.setLng(119);
-//                        gps.setSpeed(loc.getSpeed());
-//                        gps.setHigh((int)loc.getAltitude());
                             Date date = new Date();
                             gps.setUpTime(date);
                             gps.setState(1);
@@ -1174,7 +1076,7 @@ public class MyDataServicer extends Service {
                         if (cmdParam instanceof GenralReply) {
                             GenralReply tm = (GenralReply) cmdParam;
                             if (tm.getReplyCmd() == ConstCmd.CMD_TEXT_MSG) {
-                                Logger.i("ssggs555" + tm.getSimNo() + "dsg" + tm.getReplyCmd() + "dg" + tm.getResult() + "sgsg" + tm.getReplyId() + "sg" + ConstCmd.CMD_TEXT_MSG);
+//                                Logger.i("ssggs555" + tm.getSimNo() + "dsg" + tm.getReplyCmd() + "dg" + tm.getResult() + "sgsg" + tm.getReplyId() + "sg" + ConstCmd.CMD_TEXT_MSG);
                             }
                         }
                     }
@@ -1182,12 +1084,12 @@ public class MyDataServicer extends Service {
                     @Override
                     public void OnSendData(CmdParam cmdParam, MsgInfo msgInfo, boolean b) {
                         if (cmdParam instanceof GpsInfo) {
-                            Logger.i("saaf777SDSGff" + "dfgf" + msgInfo.getDataArr() + "dsg" +
-                                    "dgsd" + cmdParam.getCmdId() + "dsg" + cmdParam.getSeqId() + "dg" + cmdParam.getSimNo() + "sgsg" + b);
+//                            Logger.i("saaf777SDSGff" + "dfgf" + msgInfo.getDataArr() + "dsg" +
+//                                    "dgsd" + cmdParam.getCmdId() + "dsg" + cmdParam.getSeqId() + "dg" + cmdParam.getSimNo() + "sgsg" + b);
                         }
                         if (cmdParam instanceof TextMsg) {
-                            Logger.i("saaf33333" + "dfgf" + msgInfo.getDataArr() + "dsg" +
-                                    "dgsd" + cmdParam.getCmdId() + "dsg" + cmdParam.getSeqId() + "dg" + cmdParam.getSimNo() + "sgsg" + b);
+//                            Logger.i("saaf33333" + "dfgf" + msgInfo.getDataArr() + "dsg" +
+//                                    "dgsd" + cmdParam.getCmdId() + "dsg" + cmdParam.getSeqId() + "dg" + cmdParam.getSimNo() + "sgsg" + b);
                         }
                     }
                 };
@@ -2305,7 +2207,7 @@ public class MyDataServicer extends Service {
        获取GPS
         */
     public void getgps() {
-
+        Logger.i("getgps");
         locationManager = (LocationManager) MyApplication.getApplication().getSystemService(Context.LOCATION_SERVICE);
 //        locationManager=(LocationManager)this.getApplicationContext.getSystemService(Context.LOCATION_SERVICE);
 //        String provider = locationManager.getProvider(LocationManager.GPS_PROVIDER);
@@ -2314,7 +2216,7 @@ public class MyDataServicer extends Service {
             @Override
             public void onLocationChanged(final Location loc) {
                 if (loc == null) {
-                    Logger.i("dsg");
+                    Logger.i("dsg==null");
                 }
                 /*
                 上报海渔平台
@@ -2445,9 +2347,7 @@ public class MyDataServicer extends Service {
                             }
                         }
                     }
-
-
-                    Logger.d("wdbs23", "" + ss);
+                    Logger.d("定位的信息", "" + ss);
                     Intent intent2 = new Intent();
                     Jdbean jdbean = new Jdbean();
                     jdbean.setSateInList(lsSate);
@@ -2464,6 +2364,7 @@ public class MyDataServicer extends Service {
                     editor.commit();
                     intent2.setAction(Constant.Aisaction);
                     intent2.putExtra("pdop", jdbean);
+                    Logger.i(jdbean.toString());
                     sendBroadcast(intent2);
                     Logger.i("saaaaaf" + str + "有进来" + jdbean.getHdop() + "位置精度" + jdbean.getPdop());
                     Logger.i("GPGSA的长度" + ss);
@@ -2479,15 +2380,12 @@ public class MyDataServicer extends Service {
                     if (ss > 2 && !TextUtils.isEmpty(str[2])) {
                         SharedPreferences.Editor editor = sp.edit();//获取编辑对象
                         if ("A".equals(str[2])) {
-
                             editor.putInt("sfdw", 2);
                         } else if ("V".equals(str[2])) {
-
                             editor.putInt("sfdw", 1);
                         }
                         editor.commit();
                     }
-
                 }
 
                 int bg = sp2.getInt("fuwu", 0);
@@ -2560,20 +2458,17 @@ public class MyDataServicer extends Service {
                             } else if ((ms.equals("智能模式") && bl == false)) {
 //                        setNodeString(AIS_SW_DEVICE_ELEC5V, "0");
                             }
-
                         }
                     }
                 }
             }
         };
 
-
+/*
         sendable = new Runnable() {
             @Override
             public void run() {
-
                 try {
-
                     Looper.prepare();
                     locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 0, locationListener, Looper.myLooper());
                     locationManager.addNmeaListener(nmeaListener);
@@ -2585,7 +2480,11 @@ public class MyDataServicer extends Service {
 
             }
         };
-        new Thread(sendable).start();
+        new Thread(sendable).start();*/
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        locationManager.addNmeaListener(nmeaListener);
     }
 
     //监控落水

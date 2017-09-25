@@ -638,7 +638,6 @@ public class FragmentCompass extends Fragment implements SensorEventListener, Vi
         myC.addMarkList(markObjectList);
     }
 
-    int i = 1;
     long curuDate = -1;
     long tempDate = -1;
 
@@ -653,16 +652,11 @@ public class FragmentCompass extends Fragment implements SensorEventListener, Vi
             curuDate = date.getTime();
             if (tempDate == -1) {
                 tempDate = date.getTime();
-            } else if (tempDate != -1 && curuDate != -1 && (curuDate - tempDate) > 10) {
-
-
+            } else if (tempDate != -1 && curuDate != -1 && (curuDate - tempDate) > 5000) {
                 myC.setDegree(degree);
                 tempDate = date.getTime();
-                Logger.i("asaggg" + degree);
-
+                Logger.i("传感器角度" + degree);
             }
-
-
         }
     }
 

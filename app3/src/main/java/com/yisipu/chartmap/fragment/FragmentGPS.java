@@ -170,7 +170,6 @@ public class FragmentGPS extends Fragment {
             locationManager.removeUpdates(locationListener);
         }
     }
-
     static public boolean isShow = false;
 
     @Override
@@ -190,7 +189,6 @@ public class FragmentGPS extends Fragment {
             isShow = false;
         }
     }
-
     /*
    隐藏输入法
     */
@@ -249,10 +247,7 @@ public class FragmentGPS extends Fragment {
 
                     break;
             }
-
-
         }
-
         @Override
         public void onProviderEnabled(String provider) {
 
@@ -270,29 +265,14 @@ public class FragmentGPS extends Fragment {
      */
     private GpsStatus.Listener gpsStatusListener = new GpsStatus.Listener() {
         public void onGpsStatusChanged(int event) {
-           /* if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                return;
-            }
-            GpsStatus gpsStatus = locationManager.getGpsStatus(null);*/
             switch (event) {
                 case GpsStatus.GPS_EVENT_FIRST_FIX: {
-
-                    // 第一次定位时间UTC gps可用
-                    // Log.v(TAG,"GPS is usable");
-//                    int i = gpsStatus.getTimeToFirstFix();
                     break;
                 }
 
                 case GpsStatus.GPS_EVENT_SATELLITE_STATUS: {// 周期的报告卫星状态
                     // 得到所有收到的卫星的信息，包括 卫星的高度角、方位角、信噪比、和伪随机号（及卫星编号）
                     if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                        // TODO: Consider calling
-                        //    ActivityCompat#requestPermissions
-                        // here to request the missing permissions, and then overriding
-                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                        //                                          int[] grantResults)
-                        // to handle the case where the user grants the permission. See the documentation
-                        // for ActivityCompat#requestPermissions for more details.
                         return;
                     }
                     GpsStatus gpsStatus = locationManager.getGpsStatus(null);
@@ -405,7 +385,7 @@ public class FragmentGPS extends Fragment {
                         break;
                     case 2:
                         gpsstate.setText("定位");
-//                        pdoptv.setText("位置精度：" + pdop);
+                        pdoptv.setText("位置精度：" + pdop);
                         gpsstate.setTextColor(Color.GREEN);
 
                         break;

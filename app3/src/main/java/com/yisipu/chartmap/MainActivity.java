@@ -65,6 +65,8 @@ import com.yisipu.chartmap.dialog.CustomDialog;
 import com.yisipu.chartmap.dialog.CustomDialog3;
 import com.yisipu.chartmap.dialog.CustomDialog4;
 import com.yisipu.chartmap.dialog.SelfDialog;
+import com.yisipu.chartmap.gps.AlxLocationManager;
+import com.yisipu.chartmap.gps.MyLocation;
 import com.yisipu.chartmap.provider.BitmapProviderAssets3;
 import com.yisipu.chartmap.servicer.MyDataServicer;
 import com.yisipu.chartmap.utils.ConvertUtils;
@@ -92,6 +94,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import cn.finalteam.okhttpfinal.OkHttpFinal;
+import cn.finalteam.okhttpfinal.OkHttpFinalConfiguration;
 
 
 public class MainActivity extends SerialPortActivity {
@@ -1763,6 +1770,10 @@ public class MainActivity extends SerialPortActivity {
         setLayoutView(R.layout.activity_main);
         initDialogWarming();
 
+        OkHttpFinalConfiguration.Builder builder = new OkHttpFinalConfiguration.Builder();
+        OkHttpFinal.getInstance().init(builder.build());
+
+
         sp = getSharedPreferences("sp", MODE_PRIVATE);
         File dir3 = new File(Environment.getExternalStorageDirectory().getPath() + "/chartmap");
         if (!dir3.exists())
@@ -1875,28 +1886,6 @@ public class MainActivity extends SerialPortActivity {
         Intent intent = new Intent();
         intent.setAction(Constant.KAIJIQIDONG);
         MainActivity.this.sendBroadcast(intent);
-//
-//        if (handler == null) {
-//            handler = new Handler();
-//        }
-//        runnable = new Runnable() {
-//            @Override
-//            public void run() {
-//                //初始化海图
-//                initMap();
-//                // TODO Auto-generated method stub
-//                //要做的事情
-////                String cmd="!AIVDM,1,1,,B,8>qc9wh0@E=D85A5Dm@,2*49\r\n";
-//////        Logger.i("zzz:"+cmd4);
-////                UART1Tx(cmd);
-//                Logger.i("aaaaaa1kr21212苛刻5");
-//                handler.postDelayed(this, 5000);
-//
-//            }
-//        };
-//
-//        handler.postDelayed(runnable, 5000);//每两秒执行一次runnable.
-
 
         Resources resources = this.getResources();
         DisplayMetrics dm = resources.getDisplayMetrics();
@@ -2029,7 +2018,6 @@ public class MainActivity extends SerialPortActivity {
             String phone = sp2.getString("sosphone", "0591968195");
             SharedPreferences.Editor editor1 = sp.edit();
 
-
                 /*
                 正在发ais设置指令
                  */
@@ -2055,21 +2043,7 @@ public class MainActivity extends SerialPortActivity {
 
         pathDZWL = inPath + "/chartmap/" + "dzwl.txt";
         getDianZiWeiLan();
-//        aisPath = inPath + "/" + "ais.txt";
-//        File file = new File(aisPath);
-//        if (file.exists()) {
-//            file.delete();
-//        }
-//        aisPath2 = inPath + "/" + "ais2.txt";
-//        File file3= new File(aisPath2);
-//        if (file3.exists()) {
-//            file3.delete();
-//        }
-//        gpsPath = inPath + "/" + "gps.txt";
-//        File file2 = new File(gpsPath);
-//        if (file2.exists()) {
-//            file2.delete();
-//        }
+
         hangXianPath = inPath + "/chartmap/" + "hangxian.xml";
         hangDianPath = inPath + "/chartmap/" + "hangdian.xml";
         /*
@@ -2082,58 +2056,6 @@ public class MainActivity extends SerialPortActivity {
         if (ExtenSdCard.getSecondExterPath() != null) {
             Logger.i("dsg" + ExtenSdCard.isSecondSDcardMounted());
         }
-// DBManager dbManager=new DBManager(this);
-//        ShipBean shipBean=new ShipBean();
-//        shipBean.setMyShip(false);
-//        shipBean.setMMSI(342345342);
-//        shipBean.setLatitude(24.002);
-//        shipBean.setLongitude(117);
-//        shipBean.setReal_sudu(107);
-//        shipBean.setSog(125);
-//        dbManager.addShipBean(shipBean);
-//        ShipBean shipBean22=new ShipBean();
-//        shipBean22.setMyShip(false);
-//        shipBean22.setMMSI(311115342);
-//        shipBean22.setLatitude(24.48143);
-//        shipBean22.setLongitude(118.1900);
-//        shipBean22.setReal_sudu(60);
-//        shipBean22.setSog(170);
-//        dbManager.addShipBean(shipBean22);
-//        ShipBean shipBean11=new ShipBean();
-//        shipBean11.setMyShip(false);
-//        shipBean11.setLatitude(24.75);
-//        shipBean11.setLongitude(118.60);
-//        shipBean11.setReal_sudu(107);
-//        shipBean11.setMMSI(311165342);
-//        shipBean11.setSog(45);
-//        dbManager.addShipBean(shipBean11);
-//        ShipBean shipBean12=new ShipBean();
-//        shipBean12.setMyShip(false);
-//        shipBean12.setLatitude(24.82);
-//        shipBean12.setLongitude(118.55);
-//        shipBean12.setReal_sudu(190);
-//
-//        shipBean12.setMMSI(311165347);
-//        dbManager.addShipBean(shipBean12);
-//
-//        DBManager dbManager=new DBManager(this);
-//        MessageHaiYuBean messageHaiYuBean=new MessageHaiYuBean();
-//        messageHaiYuBean.setUpdateTime(332);
-//        messageHaiYuBean.setGetMessage("大家好好好");
-//        dbManager.addMessageHaiYu(messageHaiYuBean);
-//        MessageHaiYuBean messageHaiYuBean2=new MessageHaiYuBean();
-//        messageHaiYuBean2.setUpdateTime(3327);
-//        messageHaiYuBean2.setGetMessage("大家好好好dvhh");
-//        dbManager.addMessageHaiYu(messageHaiYuBean2);
-//        MessageHaiYuBean messageHaiYuBean3=new MessageHaiYuBean();
-//        messageHaiYuBean3.setUpdateTime(15);
-//        messageHaiYuBean3.setGetMessage("大家好好好45634");
-//        dbManager.addMessageHaiYu(messageHaiYuBean3);
-//        List<MessageHaiYuBean> lsMessage=dbManager.getMessageHaiYu();
-//        for(int i=0;i<lsMessage.size();i++){
-//            Logger.i("dskkdksgzzz"+i+"dkg"+lsMessage.get(i).getUpdateTime()+"dgh"+lsMessage.get(i).getGetMessage()+"dfhd"+lsMessage.get(i).getId());
-//        }
-
     }
 
 
@@ -2143,9 +2065,36 @@ public class MainActivity extends SerialPortActivity {
     String aisPath;
     String aisPath2;
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        //开启位置监听
+        AlxLocationManager.onCreateGPS(getApplication());
+
+        final Handler handler = new Handler();
+        //每隔2s更新一下经纬度结果
+        new Timer().scheduleAtFixedRate(new TimerTask() {//每秒钟检查一下当前位置
+            @Override
+            public void run() {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Logger.init("ZERO").reset();
+                        Logger.i(String.valueOf(MyLocation.getInstance().latitude));
+                        Logger.i(String.valueOf(MyLocation.getInstance().longitude));
+                        Logger.i(String.valueOf(MyLocation.getInstance().accuracy));
+                        if(MyLocation.getInstance().updateTime != 0)Logger.i(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(MyLocation.getInstance().updateTime)));
+                    }
+                });
+            }
+        },0,5000);
+    }
+
+
+
     /*
-    获得航点航线
-     */
+        获得航点航线
+         */
     public void getHangDianHangXian() {
         new Thread(new Runnable() {
             @Override
@@ -2554,57 +2503,7 @@ public class MainActivity extends SerialPortActivity {
         super.finish();
     }
 
-    private void setClickListener() {
-//        uartTextView.setOnClickListener(new OnClickListener() {
-//            public void onClick(View v) {
-//                mUartTest.UART0Tx("$PAIS,GPSOP,1,1,1,1,1,1,1*61\r\n"+
-//                              "$PAIS,GPSDATA,,,1*6E\r\n"+
-//                        "$DUAIQ,GPSOP*3F\r\n"
-//                        );
-//                mUartTest.UART1Tx(
-//                        "$PAIS,GPSDATA,,,1*6E\r\n"+
-//                        "$DUAIQ,GPSOP*3F\r\n"
-//                );
-//                mHandler.postDelayed(new Runnable() {
-//
-//                    @Override
-//                    public void run() {
-//                      /*  byte[] mRx1Bffer = mUartTest.getUart1RxBuffer();
-//
-//                        isUartPass = (mRx1Bffer[0] == '5') && (mRx1Bffer[1] == '5');
-//                        if(isUartPass)
-//                            DisplayTestResult(uartTextView, 2);
-//                        else
-//                            DisplayTestResult(uartTextView, 1);*/
-//                    }
-//                }, 5);
-//            }
-//        });
 
-    }
-
-    //    public static void DisplayTestResult(TextView textview, int resultTest) {
-//        if (0 == resultTest)
-//            textview.setBackgroundResource(R.color.gray);
-//        else
-//            textview.setBackgroundResource(2 == resultTest
-//                    ? R.color.dark_green : R.color.red);
-//    }
-   /*
-   跳转到Ais列表
-    */
-//    public void goToAisList(View view) {
-//        Intent intent = new Intent(MainActivity.this, AisListActivity.class);
-//        startActivity(intent);
-//    }
-
-    /*
-  跳转到Ais设置
-   */
-//    public void goToAisSetting(View view){
-//        Intent intent=new Intent(MainActivity.this,AisSettingActivity.class);
-//        startActivity(intent);
-//    }
     /*
      跳转到设置
       */
@@ -2615,11 +2514,11 @@ public class MainActivity extends SerialPortActivity {
 
     @Override
     protected void onDestroy() {
-
-
         super.onDestroy();
         tileView.destroy();
         tileView = null;
+
+        AlxLocationManager.stopGPS();
     }
 
     // 点击返回 回到home界面

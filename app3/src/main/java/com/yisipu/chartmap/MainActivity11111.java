@@ -1,9 +1,9 @@
 package com.yisipu.chartmap;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,32 +13,21 @@ import android.graphics.CornerPathEffect;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationProvider;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.text.TextUtils;
-import android.text.format.DateFormat;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
-import android.widget.AdapterView;
-import android.widget.FrameLayout;
+import android.view.animation.ScaleAnimation;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -52,9 +41,6 @@ import com.qozix.tileview.paths.CompositePathView;
 import com.qozix.tileview.widgets.ZoomPanLayout;
 import com.yisipu.chartmap.adapter.SlideMenuAdapter;
 import com.yisipu.chartmap.bean.CollectPointBean;
-import com.yisipu.chartmap.bean.Gpsbean;
-import com.yisipu.chartmap.bean.Jdbean;
-import com.yisipu.chartmap.bean.MapDataBaseXmlBean;
 import com.yisipu.chartmap.bean.ShipBean;
 import com.yisipu.chartmap.constant.Constant;
 import com.yisipu.chartmap.db.DBManager;
@@ -64,17 +50,13 @@ import com.yisipu.chartmap.dialog.CustomDialog3;
 import com.yisipu.chartmap.dialog.CustomDialog4;
 import com.yisipu.chartmap.dialog.SelfDialog;
 import com.yisipu.chartmap.gps.AlxLocationManager;
-import com.yisipu.chartmap.gps.MyLocation;
 import com.yisipu.chartmap.provider.BitmapProviderAssets3;
-import com.yisipu.chartmap.servicer.MyDataServicer;
+import com.yisipu.chartmap.tools.SPUtils;
 import com.yisipu.chartmap.utils.ConvertUtils;
 import com.yisipu.chartmap.utils.DecimalCalculate;
 import com.yisipu.chartmap.utils.ExtenSdCard;
 import com.yisipu.chartmap.utils.GetLongLati;
 import com.yisipu.chartmap.utils.LocationUtils;
-import com.yisipu.chartmap.utils.Lunar;
-import com.yisipu.chartmap.utils.MapDataBaseXmlUtil;
-import com.yisipu.chartmap.utils.PermissionUtils;
 import com.yisipu.chartmap.utils.PersonService;
 import com.yisipu.chartmap.utils.PinyinTool;
 import com.yisipu.chartmap.utils.ServiceIsUser;
@@ -87,25 +69,15 @@ import java.io.File;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.text.DecimalFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import cn.finalteam.okhttpfinal.OkHttpFinal;
-import cn.finalteam.okhttpfinal.OkHttpFinalConfiguration;
 
 
-public class MainActivity extends SerialPortActivity {
+public class MainActivity11111 extends Activity {
     private final String AIS_SW_DEVICE_ELEC5V = "/sys/customer/uart_elec5v";//AIS控制发射
     private final String AIS_SW_DEVICE_NODE = "/sys/customer/ais_en";
     private TileView tileView;
-    private TextView tv_jing_weidu;
-    private TextView gps;
+
     private ConvertUtils convertUtils = new ConvertUtils();
     private DrawerLayout menuLayout;
     private ListView menuElementsList;
@@ -115,7 +87,7 @@ public class MainActivity extends SerialPortActivity {
     private SlideMenuAdapter slideMenuAdapter;
     private ArrayList<String> menuNameList;
     private LinearLayout linearLayout, ll2, ll3, ll4, ll5;
-    private ImageView dzwl, ms;
+    private ImageView dzwl;
     int width;
     int height;
 
@@ -126,6 +98,7 @@ public class MainActivity extends SerialPortActivity {
      * 经纬度弹窗
      */
     private View viewLL;
+    private MainActivity11111 mActivity;
 
     public Bitmap readBitmap(Context context, int resId) {
         BitmapFactory.Options opts = new BitmapFactory.Options();
@@ -136,7 +109,7 @@ public class MainActivity extends SerialPortActivity {
         return BitmapFactory.decodeStream(is, null, opts);
     }
 
-    @Override
+   /* @Override
     protected void onDataReceived(final byte[] buffer, final int size) {
         runOnUiThread(new Runnable() {
             public void run() {
@@ -162,9 +135,9 @@ public class MainActivity extends SerialPortActivity {
                         Logger.i("dsgdsg:" + mmsi_cmd);
                         UART1Tx(mmsi_cmd);
                     } else if (str.contains("$DUAIR,1,010*")) {
-/*
+*//*
 修改船舶属性
- */
+ *//*
 //        String a3="AISSD,A--A,B--B,C,D,E,F,G,H*hh"+mmsi;
                         String huhao = my_ship.getHuhao();
                         if (my_ship.getHuhao().length() < 7) {
@@ -226,9 +199,9 @@ public class MainActivity extends SerialPortActivity {
                         UART1Tx(ship_cmd);
 
                     } else if (str.contains("$DUAIR,1,SSD*")) {
- /*
+ *//*
         配置航行静态数据
-        */
+        *//*
                         String type = "" + my_ship.getType();
                         if (type.length() < 3) {
                             for (int i = 0; i < 3 - type.length(); i++) {
@@ -255,8 +228,8 @@ public class MainActivity extends SerialPortActivity {
 
                     } else if (str.contains("$DUAIR,1,VSD*")) {
                         if (my_ship != null) {
-
-                            String phone = sp.getString("sosphone", "0591968195");
+                            String phone = (String) SPUtils.get(MainActivity.this, "sosphone", "0591968195");
+                           // String phone = sp.getString("sosphone", "0591968195");
 
                             String a = xml_Operate.WriteXml(my_ship, "0", phone);
                             my_ship.setMyShip(true);
@@ -277,7 +250,7 @@ public class MainActivity extends SerialPortActivity {
             }
         });
     }
-
+*/
 
     public void initTitle() {
 
@@ -285,27 +258,16 @@ public class MainActivity extends SerialPortActivity {
 //        setRightString("V1.04");
 //        setTitleText("首页");
 //        showTitle();
-        hideTitle();
+//        hideTitle();
     }
 
     private Runnable runnable;
     SharedPreferences sp;
-    Thread gpsThread;
     Bitmap ship_a = null;
     Bitmap ship_b = null;
-    //地图的经纬度差
-    double mapXLength = 60.0;
-    double mapYLength = 28.0;
-    //最左边的经度和最上面的维度
-    double mapXLeft = 90;
-    double mapYTop = 44;
     CustomDialog dialog;
-    int dexX = 25;
-    int dexY = 11;
     List<ImageView> imgList = new ArrayList<>();
-    List<ShipBean> temp_ls = new ArrayList<>();
     List<CompositePathView.DrawablePath> yuan = new ArrayList<>();
-
     Bitmap yuan_fen, yuan_lan, yuan_hong;
     /*
     船首线
@@ -334,7 +296,7 @@ public class MainActivity extends SerialPortActivity {
 
             //判断设置的模式
 
-            cusm4.setOnPositiveListener(new View.OnClickListener() {
+            cusm4.setOnPositiveListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
@@ -437,9 +399,9 @@ public class MainActivity extends SerialPortActivity {
 
                 }
                 if (sb.getMyShip()) {
-                    md = sp.getString("mode", "标准模式");
+                    md = (String) SPUtils.get(MainActivity11111.this,"mode", "标准模式");
                     if (md.equals("智能模式")) {
-                        hl = sp.getInt("hl", 1);
+                        hl = (int) SPUtils.get(MainActivity11111.this, "hl", 1);
 
                         double jd2 = LocationUtils.doLngDegress((1852 * hl) / 1000, sb.getLatitude());
                         double x2 = ((jd2 + sb.getLongitude()) - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1);
@@ -459,10 +421,10 @@ public class MainActivity extends SerialPortActivity {
                         yuan.add(drawablePath);
                         tileView.drawPath(drawablePath);
                     }
-                    gj = sp.getString("lpaqfw", "关");
+                    gj = (String) SPUtils.get(mActivity,"lpaqfw", "关");
                     if (gj.equals("开")) {
-                        fpjl = sp.getInt("fpjl", 300);//单位是米
-                        baojing = sp.getFloat("baojing", 0.5f);//单位海里
+                        fpjl = (int) SPUtils.get(MainActivity11111.this,"fpjl", 300);//单位是米
+                        baojing = (float) SPUtils.get(mActivity,"baojing", 0.5f);//单位海里
 
 //
                         double jd2 = LocationUtils.doLngDegress(fpjl / 1000, sb.getLatitude());
@@ -609,6 +571,26 @@ public class MainActivity extends SerialPortActivity {
             DBManager dbManager = new DBManager(this);
             CollectPointBean cb = dbManager.getCollect(collect_name);
             if (cb != null) {
+                float scale2 = tileView.getDetailLevelManager().getCurrentDetailLevel().getScale();
+                int zoom = 5;
+                if (tileView.getDetailLevelManager().getCurrentDetailLevel().getScale() == 0.5) {
+                    zoom = 5;
+                } else if (tileView.getDetailLevelManager().getCurrentDetailLevel().getScale() == 1.0) {
+                    zoom = 6;
+                } else if (tileView.getDetailLevelManager().getCurrentDetailLevel().getScale() == 2.0) {
+                    zoom = 7;
+                } else if (tileView.getDetailLevelManager().getCurrentDetailLevel().getScale() == 4.0) {
+                    zoom = 8;
+                } else if (tileView.getDetailLevelManager().getCurrentDetailLevel().getScale() == 8.0) {
+                    zoom = 9;
+                }
+                if (zls != null && zls.size() > 0) {
+                    for (int i = 0; i < zls.size(); i++) {
+                        if (tileView.getDetailLevelManager().getCurrentDetailLevel().getScale() == (float) (8.0000f * (Math.pow(2, (zls.get(i) - 9))))) {
+                            zoom = zls.get(i);
+                        }
+                    }
+                }
                 wd_d = cb.getLatitude();
                 jd_d = cb.getLongitude();
                 TileView tile = getTileView();
@@ -747,7 +729,7 @@ public class MainActivity extends SerialPortActivity {
                 //让屏幕到该坐标
                 tileView.slideToAndCenter((Constant.TimesNeed * position[0]), (Constant.TimesNeed * position[1]));
                 // create a simple callout
-                dialog = new CustomDialog(MainActivity.this);
+                dialog = new CustomDialog(MainActivity11111.this);
                 if (!String.valueOf(sb.getMMSI()).equals("999999999") || !sb.getMyShip()) {
                     dialog.getTv_mmsi().setText("MMSI:" + sb.getMMSI());
 
@@ -851,16 +833,16 @@ public class MainActivity extends SerialPortActivity {
                     }
 
                 }
-                dialog.getSave_chinese_2().setOnClickListener(new View.OnClickListener() {
+                dialog.getSave_chinese_2().setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         String other = dialog.getTv_chinese_name().getText().toString().trim();
                         if (sb.getChineseName().equals("")) {
-                            Toast.makeText(MainActivity.this, "暂无英文船名不可修改中文船名", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity11111.this, "暂无英文船名不可修改中文船名", Toast.LENGTH_SHORT).show();
                             return;
                         }
                         if (TextUtils.isEmpty(other)) {
-                            Toast.makeText(MainActivity.this, "中文船名不能为空", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity11111.this, "中文船名不能为空", Toast.LENGTH_SHORT).show();
                             return;
                         }
                         try {
@@ -868,19 +850,19 @@ public class MainActivity extends SerialPortActivity {
                                 String a = p.toPinYin(other);
                                 String b = p.toPinYin(sb.getChineseName());
                                 if (a.equals(b)) {
-                                    DBManager db = new DBManager(MainActivity.this);
+                                    DBManager db = new DBManager(MainActivity11111.this);
                                     sb.setChineseNameChange(other);
                                     db.addShipBean(sb);
-                                    Toast.makeText(MainActivity.this, "保存成功", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(MainActivity11111.this, "保存成功", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Toast.makeText(MainActivity.this, "修改的中文船名必须为同音字", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(MainActivity11111.this, "修改的中文船名必须为同音字", Toast.LENGTH_SHORT).show();
                                     return;
                                 }
                             } else {
                                 return;
                             }
                         } catch (Exception exp) {
-                            Toast.makeText(MainActivity.this, "保存失败", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity11111.this, "保存失败", Toast.LENGTH_SHORT).show();
 
                         }
 
@@ -889,18 +871,18 @@ public class MainActivity extends SerialPortActivity {
                 if (!sb.getOtherName().equals("")) {
                     dialog.getEt_other_name().setText(sb.getOtherName());
                 }
-                dialog.getSave_other_name().setOnClickListener(new View.OnClickListener() {
+                dialog.getSave_other_name().setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         String other = dialog.getEt_other_name().getText().toString().trim();
                         if (TextUtils.isEmpty(other)) {
-                            Toast.makeText(MainActivity.this, "别名不能为空", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity11111.this, "别名不能为空", Toast.LENGTH_SHORT).show();
                             return;
                         }
-                        DBManager db = new DBManager(MainActivity.this);
+                        DBManager db = new DBManager(MainActivity11111.this);
                         sb.setOtherName(other);
                         db.addShipBean(sb);
-                        Toast.makeText(MainActivity.this, "保存成功", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity11111.this, "保存成功", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -1145,71 +1127,8 @@ public class MainActivity extends SerialPortActivity {
 
         //我们从资产，应该是相当快速的解码，去渲染ASAP
         tileView.setShouldRenderWhilePanning(true);
-        tileView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                viewLL = getLayoutInflater().inflate(R.layout.home_map_fav_float, null);
-//                       float fraction=tileView.getDetailLevelManager().getScale();
-                ImageView iv = (ImageView) viewLL.findViewById(R.id.iv_close);
-                iv.setOnClickListener(new OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        TileView tileView = getTileView();
-                        if (viewLL != null) {
-                            tileView.getMarkerLayout().removeMarker(viewLL);
-                            viewLL = null;
-                        }
-                    }
-                });
-                viewLL.setOnClickListener(new OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        cdDialog = new CollectDialog(MainActivity.this);
-                        cdDialog.setNoOnclickListener(null, new CollectDialog.onNoOnclickListener() {
-                            @Override
-                            public void onNoClick() {
-                                cdDialog.dismiss();
-
-                            }
-                        });
-                        cdDialog.setYesOnclickListener(null, new CollectDialog.onYesOnclickListener() {
-                            @Override
-                            public void onYesClick() {
-                                String name = cdDialog.getEt_name().getText().toString();
-                                if (TextUtils.isEmpty(name)) {
-                                    Toast.makeText(MainActivity.this, "航点名不能为空", Toast.LENGTH_SHORT).show();
-                                    return;
-                                }
-                                DBManager db = new DBManager(MainActivity.this);
-                                CollectPointBean cp = db.getCollect(name);
-                                if (cp != null) {
-                                    Toast.makeText(MainActivity.this, "航点名已存在，请重新命名", Toast.LENGTH_SHORT).show();
-
-                                    return;
-                                }
-                                int position = cdDialog.getPosition();
-                                CollectPointBean a = new CollectPointBean();
-                                a.setLongitude(jd_d);
-                                a.setLatitude(wd_d);
-                                a.setName(name);
-                                a.setType(0);
-                                a.setImage(position);
-                                Logger.i("sasfa" + position);
-                                db.addCollectPoint(a);
-                                cdDialog.dismiss();
-                                Toast.makeText(MainActivity.this, "航点收藏成功", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-//                               Toast.makeText(MainActivity.this,"加入收藏",Toast.LENGTH_SHORT).show();
-
-                        cdDialog.show();
-
-                    }
-                });
-                return true;
-            }
-        });
         tileView.setOnTouchListener(new View.OnTouchListener() {
+
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 TileView tileView = getTileView();
@@ -1263,8 +1182,14 @@ public class MainActivity extends SerialPortActivity {
                         }
                     }
                     if (isLongClickModule && !isLongClicking) {
+                        //处理长按事件
+//                       Logger.d("weidu",""+(NORTH_WEST_LATITUDE+(SOUTH_EAST_LATITUDE-NORTH_WEST_LATITUDE)*(((v.getScrollY()+event.getY())/(fraction+0.0))/(tileView.getBaseHeight()+0.0))));
+//                       Logger.d("jingdu",""+(NORTH_WEST_LONGITUDE+(SOUTH_EAST_LONGITUDE-NORTH_WEST_LONGITUDE)*(((v.getScrollX()+event.getX())/(fraction+0.0))/(tileView.getBaseWidth()+0.0))));
+//                       Toast.makeText(MainActivity.this, "xDown:"+xDown+"yDown:"+yDown+"长按"+"getY:"+event.getY()+"getX:"+event.getX()+"getXReal"+(v.getScrollX()+event.getX())+"getYReal"+(v.getScrollY()+event.getY()), Toast.LENGTH_LONG).show();
                         isLongClicking = true;
+//                        final View view = getLayoutInflater().inflate(R.layout.home_map_fav_float, null);
                         viewLL = getLayoutInflater().inflate(R.layout.home_map_fav_float, null);
+//                       float fraction=tileView.getDetailLevelManager().getScale();
                         ImageView iv = (ImageView) viewLL.findViewById(R.id.iv_close);
                         iv.setOnClickListener(new OnClickListener() {
                             @Override
@@ -1279,11 +1204,12 @@ public class MainActivity extends SerialPortActivity {
                         viewLL.setOnClickListener(new OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                cdDialog = new CollectDialog(MainActivity.this);
+                                cdDialog = new CollectDialog(MainActivity11111.this);
                                 cdDialog.setNoOnclickListener(null, new CollectDialog.onNoOnclickListener() {
                                     @Override
                                     public void onNoClick() {
                                         cdDialog.dismiss();
+
                                     }
                                 });
                                 cdDialog.setYesOnclickListener(null, new CollectDialog.onYesOnclickListener() {
@@ -1291,13 +1217,13 @@ public class MainActivity extends SerialPortActivity {
                                     public void onYesClick() {
                                         String name = cdDialog.getEt_name().getText().toString();
                                         if (TextUtils.isEmpty(name)) {
-                                            Toast.makeText(MainActivity.this, "航点名不能为空", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(MainActivity11111.this, "航点名不能为空", Toast.LENGTH_SHORT).show();
                                             return;
                                         }
-                                        DBManager db = new DBManager(MainActivity.this);
+                                        DBManager db = new DBManager(MainActivity11111.this);
                                         CollectPointBean cp = db.getCollect(name);
                                         if (cp != null) {
-                                            Toast.makeText(MainActivity.this, "航点名已存在，请重新命名", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(MainActivity11111.this, "航点名已存在，请重新命名", Toast.LENGTH_SHORT).show();
 
                                             return;
                                         }
@@ -1311,7 +1237,7 @@ public class MainActivity extends SerialPortActivity {
                                         Logger.i("sasfa" + position);
                                         db.addCollectPoint(a);
                                         cdDialog.dismiss();
-                                        Toast.makeText(MainActivity.this, "航点收藏成功", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(MainActivity11111.this, "航点收藏成功", Toast.LENGTH_SHORT).show();
                                     }
                                 });
 //                               Toast.makeText(MainActivity.this,"加入收藏",Toast.LENGTH_SHORT).show();
@@ -1408,10 +1334,22 @@ public class MainActivity extends SerialPortActivity {
 搜索点击事件
 */
 
+    private EditText et_w_d;
+    private EditText et_w_f;
+    private EditText et_w_m;
+    private EditText et_j_d;
+    private EditText et_j_f;
+    private EditText et_j_m;
 
     public void searcher(View view) {
 
         final SelfDialog dialog2 = new SelfDialog(this);
+//        et_w_d=(EditText) dialog2.findViewById(R.id.et_w_d);
+//        et_w_f=(EditText) dialog2.findViewById(R.id.et_w_f);
+//        et_w_m=(EditText) dialog2.findViewById(R.id.et_w_m);
+//        et_j_d=(EditText)dialog2. findViewById(R.id.et_j_d);
+//        et_j_f=(EditText) dialog2.findViewById(R.id.et_j_f);
+//        et_j_m=(EditText) dialog2.findViewById(R.id.et_j_m);
         dialog2.setNoOnclickListener(null, new SelfDialog.onNoOnclickListener() {
             @Override
             public void onNoClick() {
@@ -1429,25 +1367,25 @@ public class MainActivity extends SerialPortActivity {
                 String jf = dialog2.getEt_j_f().getText().toString();
                 String jm = dialog2.getEt_j_m().getText().toString();
                 if (TextUtils.isEmpty(wd)) {
-                    Toast.makeText(MainActivity.this, "纬度不能为空", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity11111.this, "纬度不能为空", Toast.LENGTH_SHORT).show();
                     return;
                 } else if (TextUtils.isEmpty(jd)) {
-                    Toast.makeText(MainActivity.this, "经度不能为空", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity11111.this, "经度不能为空", Toast.LENGTH_SHORT).show();
                     return;
                 } else if (Math.abs(Integer.valueOf(wd)) > 90) {
-                    Toast.makeText(MainActivity.this, "纬度范围在90到-90,请重输", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity11111.this, "纬度范围在90到-90,请重输", Toast.LENGTH_SHORT).show();
                     return;
                 } else if (Math.abs(Integer.valueOf(jd)) > 180) {
-                    Toast.makeText(MainActivity.this, "经度范围在180到-180,请重输", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity11111.this, "经度范围在180到-180,请重输", Toast.LENGTH_SHORT).show();
                     return;
                 } else if (Math.abs(Integer.valueOf(jd)) == 180) {
                     if (!TextUtils.isEmpty(jm) || !TextUtils.isEmpty(jf)) {
-                        Toast.makeText(MainActivity.this, "经度范围在180到-180,请重输", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity11111.this, "经度范围在180到-180,请重输", Toast.LENGTH_SHORT).show();
                         return;
                     }
                 } else if (Math.abs(Integer.valueOf(wd)) == 90) {
                     if (!TextUtils.isEmpty(wm) || !TextUtils.isEmpty(wf)) {
-                        Toast.makeText(MainActivity.this, "纬度范围在90到-90,请重输", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity11111.this, "纬度范围在90到-90,请重输", Toast.LENGTH_SHORT).show();
                         return;
                     }
                 }
@@ -1488,7 +1426,7 @@ public class MainActivity extends SerialPortActivity {
                 viewLL.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        cdDialog = new CollectDialog(MainActivity.this);
+                        cdDialog = new CollectDialog(MainActivity11111.this);
                         cdDialog.setNoOnclickListener(null, new CollectDialog.onNoOnclickListener() {
                             @Override
                             public void onNoClick() {
@@ -1501,13 +1439,13 @@ public class MainActivity extends SerialPortActivity {
                             public void onYesClick() {
                                 String name = cdDialog.getEt_name().getText().toString();
                                 if (TextUtils.isEmpty(name)) {
-                                    Toast.makeText(MainActivity.this, "航点名不能为空", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(MainActivity11111.this, "航点名不能为空", Toast.LENGTH_SHORT).show();
                                     return;
                                 }
-                                DBManager db = new DBManager(MainActivity.this);
+                                DBManager db = new DBManager(MainActivity11111.this);
                                 CollectPointBean cp = db.getCollect(name);
                                 if (cp != null) {
-                                    Toast.makeText(MainActivity.this, "航点名已存在，请重新命名", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(MainActivity11111.this, "航点名已存在，请重新命名", Toast.LENGTH_SHORT).show();
 
                                     return;
                                 }
@@ -1518,7 +1456,7 @@ public class MainActivity extends SerialPortActivity {
                                 a.setType(0);
                                 db.addCollectPoint(a);
                                 cdDialog.dismiss();
-                                Toast.makeText(MainActivity.this, "航点收藏成功", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity11111.this, "航点收藏成功", Toast.LENGTH_SHORT).show();
                             }
                         });
 //                               Toast.makeText(MainActivity.this,"加入收藏",Toast.LENGTH_SHORT).show();
@@ -1575,7 +1513,7 @@ public class MainActivity extends SerialPortActivity {
   测量点击事件
    */
     public void measure(View view) {
-        Intent intent = new Intent(MainActivity.this, CjActivity.class);
+        Intent intent = new Intent(MainActivity11111.this, CjActivity.class);
         if (zls != null && zls.size() > 0) {
             intent.putExtra("zList", (Serializable) zls);
         }
@@ -1594,7 +1532,7 @@ public class MainActivity extends SerialPortActivity {
      */
     public void satnav(View view) {
         float b = tileView.getDetailLevelManager().getCurrentDetailLevel().getScale();
-        Intent intent = new Intent(MainActivity.this, DhActivity.class);
+        Intent intent = new Intent(MainActivity11111.this, DhActivity.class);
         if (zls != null && zls.size() > 0) {
             intent.putExtra("zList", (Serializable) zls);
         }
@@ -1627,6 +1565,118 @@ public class MainActivity extends SerialPortActivity {
         }
     }
 
+    /*
+    减级别按钮
+     */
+    public void jianLevel(View view) {
+        TileView tileView = getTileView();
+        float a = tileView.getScale();
+        float b = tileView.getDetailLevelManager().getCurrentDetailLevel().getScale();
+
+        int scrollX = tileView.getScrollX() + tileView.getHalfWidth();
+        int scrollY = tileView.getScrollY() + tileView.getHalfHeight();
+
+        Logger.i("saaa" + tileView.getHalfWidth() + "zzz" + tileView.getHalfHeight() + "DSS" + scrollX + "sg" + scrollY + b);
+
+        if (b > 0.5) {
+            myAnimation_Scale = new ScaleAnimation(1f, 0.1f, 1f, 0.1f,
+                    Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+            tileView.setAnimation(myAnimation_Scale);
+            tileView.setAnimationDuration(800);
+            tileView.smoothScaleFromCenter(b / 2);
+
+            double z = Math.log(Constant.TimesNeed * b / 2) / Math.log(2);
+            double s = Constant.gongliMaxBl / Math.pow(2, z);
+
+            double[] point3 = {(120 - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1), Constant.WpTimes * (GetLongLati.getY(24, 5) - Constant.minY5 * 256)};
+            double jd2 = LocationUtils.doLngDegress((long) (1852 * Constant.gongliMaxBl / 1000), 24);
+            double x2 = ((jd2 + 120) - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1);
+            double s2 = Math.abs(x2 - point3[0]);
+            Logger.i("sdgskk" + s2);
+            android.view.ViewGroup.LayoutParams lp = cj_lla_blc
+                    .getLayoutParams();
+            lp.width = (int) (s2 / 2);
+            cj_lla_blc.setLayoutParams(lp);
+            DecimalFormat df3 = new DecimalFormat("##0.00");
+            tv_gongli.setText("" + df3.format(s) + "海里");
+
+        }
+    }
+
+    /*
+加级别按钮
+ */
+    public void jiaLevel(View view) {
+        TileView tileView = getTileView();
+
+        float a = tileView.getScale();
+        float b = tileView.getDetailLevelManager().getCurrentDetailLevel().getScale();
+        if (zls != null && zls.size() > 0) {
+            if (b <= 8f * (Math.pow(2, (zls.get(zls.size() - 1)) - 9 - 1))) {
+                myAnimation_Scale = new ScaleAnimation(0.5f, 0.8f, 0.5f, 0.8f,
+                        Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+                tileView.setAnimation(myAnimation_Scale);
+                tileView.setAnimationDuration(800);
+                tileView.smoothScaleFromCenter(b * 2);
+                double z = Math.log(Constant.TimesNeed * b * 2) / Math.log(2);
+                double s = Constant.gongliMaxBl / Math.pow(2, z);
+
+                double[] point3 = {(120 - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1), Constant.WpTimes * (GetLongLati.getY(24, 5) - Constant.minY5 * 256)};
+                double jd2 = LocationUtils.doLngDegress((long) (1852 * Constant.gongliMaxBl / 1000), 24);
+                double x2 = ((jd2 + 120) - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1);
+                double s2 = Math.abs(x2 - point3[0]);
+                Logger.i("sdgskk" + s2);
+                android.view.ViewGroup.LayoutParams lp = cj_lla_blc
+                        .getLayoutParams();
+                lp.width = (int) (s2 / 2);
+                cj_lla_blc.setLayoutParams(lp);
+                DecimalFormat df3 = new DecimalFormat("##0.00");
+                tv_gongli.setText("" + df3.format(s) + "海里");
+            }
+        } else {
+            if (b <= 4) {
+                myAnimation_Scale = new ScaleAnimation(0.5f, 0.8f, 0.5f, 0.8f,
+                        Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+                tileView.setAnimation(myAnimation_Scale);
+                tileView.setAnimationDuration(800);
+                tileView.smoothScaleFromCenter(b * 2);
+                double z = Math.log(Constant.TimesNeed * b * 2) / Math.log(2);
+                double s = Constant.gongliMaxBl / Math.pow(2, z);
+
+                double[] point3 = {(120 - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1), Constant.WpTimes * (GetLongLati.getY(24, 5) - Constant.minY5 * 256)};
+                double jd2 = LocationUtils.doLngDegress((long) (1852 * Constant.gongliMaxBl / 1000), 24);
+                double x2 = ((jd2 + 120) - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1);
+                double s2 = Math.abs(x2 - point3[0]);
+                Logger.i("sdgskk" + s2);
+                android.view.ViewGroup.LayoutParams lp = cj_lla_blc
+                        .getLayoutParams();
+                lp.width = (int) (s2 / 2);
+                cj_lla_blc.setLayoutParams(lp);
+//                tv_gongli.setText("" + s + "海里");
+                DecimalFormat df3 = new DecimalFormat("##0.00");
+                tv_gongli.setText("" + df3.format(s) + "海里");
+//        TileView tileView = getTileView();
+//        float a = tileView.getScale();
+//        if (a <=8) {
+//
+//                tileView.setScaleFromCenter(a*2);
+//            DBManager db = new DBManager(this);
+//            ShipBean sb = db.getMyShip();
+//            if (null != sb && sb.getLatitude() != -1 && sb.getLongitude() != -1 && sb.getLatitude() <= 90 && sb.getLongitude() <= 180) {
+//                double jd = sb.getLongitude();
+//                double wd = sb.getLatitude();
+//
+//                frameToWithScale((jd - GetLongLati.getLong(25, 0, 5)) / ((GetLongLati.getLong(28, 0, 5) - GetLongLati.getLong(25, 0, 5))) * 256 * 3, GetLongLati.getY(wd, 5) - 11 * 256, a*2);
+//
+//
+//            }else{
+//                frameToWithScale((120 - GetLongLati.getLong(25, 0, 5)) / ((GetLongLati.getLong(28, 0, 5) - GetLongLati.getLong(25, 0, 5))) * 256 * 3, GetLongLati.getY(24, 5) - 11 * 256, a*2);
+//            }
+
+
+            }
+        }
+    }
 
     LinearLayout cj_lla_blc;
     TextView tv_gongli;
@@ -1653,7 +1703,7 @@ public class MainActivity extends SerialPortActivity {
 
     private static final String DATABASE_PATH = getPath() + "/chartmap/map_database";
 
-    MapDataBaseXmlBean mbx = null;
+
     CustomDialog3 warm = null;
 
     public void initDialogWarming() {
@@ -1662,7 +1712,7 @@ public class MainActivity extends SerialPortActivity {
 
         //判断设置的模式
 
-        warm.setOnPositiveListener(new View.OnClickListener() {
+        warm.setOnPositiveListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -1676,12 +1726,12 @@ public class MainActivity extends SerialPortActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setLayoutView(R.layout.activity_main);
-        initDialogWarming();
-
-        OkHttpFinalConfiguration.Builder builder = new OkHttpFinalConfiguration.Builder();
+        setContentView(R.layout.activity_main);
+//        initDialogWarming();
+        mActivity = this;
+     /*   OkHttpFinalConfiguration.Builder builder = new OkHttpFinalConfiguration.Builder();
         OkHttpFinal.getInstance().init(builder.build());
-        PermissionUtils.verifyStoragePermissions(this);
+
 
         sp = getSharedPreferences("sp", MODE_PRIVATE);
         File dir3 = new File(Environment.getExternalStorageDirectory().getPath() + "/chartmap");
@@ -1689,12 +1739,13 @@ public class MainActivity extends SerialPortActivity {
             dir3.mkdir();
         File dir2 = new File(DATABASE_PATH);
         if (!dir2.exists())
-            dir2.mkdir();
+            dir2.mkdir();*/
 
 //        File dir = new File(DATABASE_PATH);
 //
 //        if (!dir.exists())
 //            dir.mkdir();
+        /*MapDataBaseXmlBean mbx = null;
         String pathDataBaseXml = DATABASE_PATH + "/" + "map_setting.xml";
         if (mbx == null) {
             mbx = MapDataBaseXmlUtil.readMapDataBase(pathDataBaseXml);
@@ -1702,22 +1753,20 @@ public class MainActivity extends SerialPortActivity {
                 BitmapProviderAssets3.mdbx = mbx;
                 Logger.i("sdgs" + mbx.toString());
             }
-        }
+        }*/
 
 
 //        sceneMap = (MyMap) findViewById(R.id.sceneMap);
         tileView = (TileView) findViewById(R.id.tile_view);
         tileView.setSaveEnabled(true);
-        gps = (TextView) findViewById(R.id.tv_jing_weidu);
-        ms = (ImageView) findViewById(R.id.main_ms);
-
-         /*
-       比例尺
-         */
         cj_lla_blc = (LinearLayout) findViewById(R.id.cj_lla_blc);
         tv_gongli = (TextView) findViewById(R.id.tv_gongli);
         tv_line_cl = (TextView) findViewById(R.id.tv_line_cl);
         dzwl = (ImageView) findViewById(R.id.main_dzwl);
+
+         /*
+       比例尺
+         *//*
         if (mbx != null && mbx.isSign()) {
 //            zls = HaiTuSqliteDb.getZoomList();
             for (int i = 0; i < (mbx.getLevelMax() - mbx.getLevelMin() + 1); i++) {
@@ -1756,54 +1805,47 @@ public class MainActivity extends SerialPortActivity {
         yuan_fen = readBitmap(MainActivity.this, R.drawable.yuan_fenhong);
         yuan_lan = readBitmap(MainActivity.this, R.drawable.yuan_lan);
         yuan_hong = readBitmap(MainActivity.this, R.drawable.yuan_hongse);
-
-//        b = BitmapFactory
-//                .decodeResource(getResources(), R.drawable.test, options);
-//        sceneMap.setBitmap(b);
-//        ship_a = BitmapFactory.decodeResource(getResources(),
-//                R.drawable.aleichuan, options);
-//        ship_b = BitmapFactory.decodeResource(getResources(),
-//                R.drawable.bleichuan, options);
-//        yuan_fen = BitmapFactory.decodeResource(getResources(),
-//                R.drawable.yuan_fenhong, options);
-//        yuan_lan = BitmapFactory.decodeResource(getResources(),
-//                R.drawable.yuan_lan, options);
-//        yuan_hong = BitmapFactory.decodeResource(getResources(),
-//                R.drawable.yuan_hongse, options);
+*/
         initTileView();
         initTitle();
-        new TimeThread().start();
+        ///////////////////////////////////////////////////////////
+//        new TimeThread().start();
+        //////////////////////////////////////////////////////////
         boolean isUse = ServiceIsUser.isServiceWork(this, "com.yisipu.chartmap.servicer.MyDataServicer");
-        if (!isUse) {
+     /*   if (!isUse) {
             Intent service = new Intent(MainActivity.this, MyDataServicer.class);
             this.startService(service);
-        }
-
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putInt("sfdw", 1);
-
-        editor.putBoolean("close_service", false);
+        }*/
 
 //        SharedPreferences.Editor editor = sp.edit();
-        editor.putInt("fuwu", 1);//keyname是储存数据的键值名，同一个对象可以保存多个键值
-        editor.putString("sg", "开");
-        editor.putString("fpyp", "开");
-        editor.commit();//提交保存修改
-        tv_jing_weidu = (TextView) findViewById(R.id.tv_jing_weidu);
+//        editor.putInt("sfdw", 1);
+        SPUtils.putAndApply(this,"sfdw",1);
+//        editor.putBoolean("close_service", false);
+        SPUtils.putAndApply(this,"close_service", false);
+        SPUtils.putAndApply(this,"fuwu", 1);
+        SPUtils.putAndApply(this,"sg", "开");
+        SPUtils.putAndApply(this,"fpyp", "开");
+
+//        SharedPreferences.Editor editor = sp.edit();
+//        editor.putInt("fuwu", 1);//keyname是储存数据的键值名，同一个对象可以保存多个键值
+//        editor.putString("sg", "开");
+//        editor.putString("fpyp", "开");
+//        editor.commit();//提交保存修改
+
 //        SharedPreferences.Editor editor = sp.edit();//获取编辑对象
 
         Intent intent = new Intent();
         intent.setAction(Constant.KAIJIQIDONG);
-        MainActivity.this.sendBroadcast(intent);
+        MainActivity11111.this.sendBroadcast(intent);
 
         Resources resources = this.getResources();
         DisplayMetrics dm = resources.getDisplayMetrics();
         float density1 = dm.density;
         width = dm.widthPixels;
         height = dm.heightPixels;
-        menuLayout = (DrawerLayout) findViewById(R.id.menu_layout);
+    /*    menuLayout = (DrawerLayout) findViewById(R.id.menu_layout);
         menuElementsList = (ListView) findViewById(R.id.menu_elements);
-        linearLayout = (LinearLayout) findViewById(R.id.ll);
+
         ll2 = (LinearLayout) findViewById(R.id.lla2);
         ll3 = (LinearLayout) findViewById(R.id.lla3);
         ll4 = (LinearLayout) findViewById(R.id.lla4);
@@ -1811,22 +1853,10 @@ public class MainActivity extends SerialPortActivity {
         // 设置阴影
         menuLayout.setDrawerShadow(R.drawable.drawer_shadow,
                 GravityCompat.START);
-        tv1 = (TextView) findViewById(R.id.main_jd);
-        tv2 = (TextView) findViewById(R.id.main_wd);
-        tv3 = (TextView) findViewById(R.id.tv3);
-        tv4 = (TextView) findViewById(R.id.tv4);
-        sj = (TextView) findViewById(R.id.main_sj);
-        nl = (TextView) findViewById(R.id.main_nl);
-        dw = (TextView) findViewById(R.id.main_dw);
 
-        int sfdw = sp.getInt("sfdw", 1);
-        if (sfdw == 1) {
-            dw.setText("未定位");
-            dw.setTextColor(Color.RED);
-        } else if (sfdw == 2) {
-            dw.setText("已定位");
-            dw.setTextColor(Color.GREEN);
-        }
+
+//        int sfdw = sp.getInt("sfdw", 1);
+
         menuNameList = new ArrayList<String>();
         menuNameList.add("菜单");
         menuNameList.add("AIS列表");
@@ -1836,40 +1866,38 @@ public class MainActivity extends SerialPortActivity {
         menuNameList.add("退出");
         slideMenuAdapter = new SlideMenuAdapter(this, menuNameList);
         menuElementsList.setAdapter(slideMenuAdapter);
-        menuElementsList.setOnItemClickListener(new DrawerItemClickListener());
-        // 使APPIcon也能响应点击事件
-//        getActionBar().setDisplayHomeAsUpEnabled(true);
-//        getActionBar().setHomeButtonEnabled(true);
-//        selectItem(0);
-        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(420, 280);//导入上面所述的包
-        layoutParams.gravity = Gravity.RIGHT;
+        /////////////////////////////////////////////////////////////
+   //     menuElementsList.setOnItemClickListener(new DrawerItemClickListener());
+
+     *//*    FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(420, 280);//导入上面所述的包
+       layoutParams.gravity = Gravity.RIGHT;
         linearLayout.setLayoutParams(layoutParams);
-//        linearLayout.setBackgroundColor(Color.parseColor("#3fcebcbc"));
-        linearLayout.setBackgroundResource(R.drawable.corners_bg);
-        tv1.setTextSize(18);
+        linearLayout.setBackgroundResource(R.drawable.corners_bg);*//*
+      *//*  tv1.setTextSize(18);
         tv2.setTextSize(18);
         tv3.setTextSize(18);
-        tv4.setTextSize(18);
+        tv4.setTextSize(18);*//*
         menuToggle = new ActionBarDrawerToggle(this, menuLayout, R.drawable.ic_drawer, R.string.drawer_open, R.string.drawer_close
         ) {
             public void onDrawerClosed(View view) {
-//                getActionBar().setTitle(activityTitle);
                 invalidateOptionsMenu(); // 调用 onPrepareOptionsMenu()
             }
 
             public void onDrawerOpened(View drawerView) {
-//                getActionBar().setTitle(menuTitle);
                 invalidateOptionsMenu(); // 调用 onPrepareOptionsMenu()
             }
-        };
-        menuLayout.setDrawerListener(menuToggle);
-        linearLayout.setOnTouchListener(new onDoubleClick());
+        };*/
+        ///////////////////////////////////////////
+//        menuLayout.setDrawerListener(menuToggle);
 
-        StringBuilder log = new StringBuilder();
+        //////////////////////////////////////////////////
+     //   linearLayout.setOnTouchListener(new onDoubleClick());
+
+       /* StringBuilder log = new StringBuilder();
         String inPath = getInnerSDCardPath();
-        /*
+        *//*
         配置文件路径
-         */
+         *//*
         pathSettingXml = inPath + "/chartmap/" + "info.xml";
         log.append("内置SD卡路径：" + inPath + "\r\n");
         File a = new File(pathSettingXml);
@@ -1890,46 +1918,50 @@ public class MainActivity extends SerialPortActivity {
 //                Toast.makeText(this, "sosPhone"+sosPhone+"dsd"+sign + "dd" + my_ship.toString(), Toast.LENGTH_SHORT).show();
 //            }
             if (null != my_ship && sign != null && sign.equals("1")) {
-                SharedPreferences.Editor editor1 = sp.edit();
-                /*
-                正在发ais设置指令
-                 */
+                *//*SharedPreferences.Editor editor1 = sp.edit();
+
                 editor1.putInt("isAisSetting", 1);
-                editor1.commit();
-                 /*
+                editor1.commit();*//*
+//                正在发ais设置指令
+                SPUtils.putAndApply(mActivity,"isAisSetting", 1);
+                 *//*
 //        先发送复位的消息
-//         */
+//         *//*
                 String mmsi_cmd1 = "$PAIS,013,,,[[KanDLe]]*10\r\n";
                 Logger.i("dsgdsg:" + mmsi_cmd1);
                 UART1Tx(mmsi_cmd1);
 //                Logger.i("dsgsgsgsgg");
             } else {
                 SharedPreferences sp2 = getSharedPreferences("Phone", MODE_PRIVATE);
-                String phone = sp2.getString("sosphone", "0591968195");
-                SharedPreferences.Editor editor1 = sp.edit();
+//                String phone = sp2.getString("sosphone", "0591968195");
+                String phone = (String) SPUtils.get(mActivity,"sosphone", "0591968195");
 
+//                SharedPreferences.Editor editor1 = sp.edit();
 
-                /*
-                正在发ais设置指令
-                 */
+             *//*
                 editor1.putInt("isAisSetting", 0);
-                editor1.commit();
+                editor1.commit();*//*
+//                正在发ais设置指令
+                SPUtils.putAndApply(mActivity,"isAisSetting", 0);
                 DBManager db = new DBManager(this);
                 ShipBean my_ship3 = db.getMyShip();
                 if (my_ship3 != null) {
                     String b = xml_Operate.WriteXml(my_ship3, "0", phone);
                     xml_Operate.Write(b, pathSettingXml);
                 }
-            }
-        } else {
+            }*/
+        }
+
+    ////////////////////////////////////////////////////
+        /* else {
             xml_Operate = new Xml_Operate(MainActivity.this, pathSettingXml);
             SharedPreferences sp2 = getSharedPreferences("Phone", MODE_PRIVATE);
             String phone = sp2.getString("sosphone", "0591968195");
             SharedPreferences.Editor editor1 = sp.edit();
 
-                /*
+                *//*
                 正在发ais设置指令
-                 */
+                 *//*
             editor1.putInt("isAisSetting", 0);
             editor1.commit();
             DBManager db = new DBManager(this);
@@ -1939,25 +1971,20 @@ public class MainActivity extends SerialPortActivity {
                 xml_Operate.Write(b, pathSettingXml);
             }
         }
-//        List<String> extPaths = getExtSDCardPath();
-//        for (String path : extPaths) {
-//            log.append("外置SD卡路径：" + path + "\r\n");
-//        }
-
-        Logger.i(log.toString() + "DGGF" + pathSettingXml);
+        Logger.i(log.toString() + "DGGF" + pathSettingXml);*/
 
         /*
        电子围栏 配置文件路径
          */
 
-        pathDZWL = inPath + "/chartmap/" + "dzwl.txt";
+        /*pathDZWL = inPath + "/chartmap/" + "dzwl.txt";
         getDianZiWeiLan();
 
         hangXianPath = inPath + "/chartmap/" + "hangxian.xml";
         hangDianPath = inPath + "/chartmap/" + "hangdian.xml";
-        /*
+        *//*
         获得航点航线数据
-         */
+         *//*
         getHangDianHangXian();
 
 
@@ -1965,7 +1992,7 @@ public class MainActivity extends SerialPortActivity {
         if (ExtenSdCard.getSecondExterPath() != null) {
             Logger.i("dsg" + ExtenSdCard.isSecondSDcardMounted());
         }
-    }
+    }*/
 
 
     String hangXianPath;
@@ -1977,7 +2004,7 @@ public class MainActivity extends SerialPortActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        //开启位置监听
+      /*  //开启位置监听
         AlxLocationManager.onCreateGPS(getApplication());
 
         final Handler handler = new Handler();
@@ -1992,13 +2019,13 @@ public class MainActivity extends SerialPortActivity {
                         Logger.i(String.valueOf(MyLocation.getInstance().latitude));
                         Logger.i(String.valueOf(MyLocation.getInstance().longitude));
                         Logger.i(String.valueOf(MyLocation.getInstance().accuracy));
-                        if (MyLocation.getInstance().updateTime != 0)
-                            Logger.i(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(MyLocation.getInstance().updateTime)));
+                        if(MyLocation.getInstance().updateTime != 0)Logger.i(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(MyLocation.getInstance().updateTime)));
                     }
                 });
             }
-        }, 0, 5000);
+        },0,5000);*/
     }
+
 
 
     /*
@@ -2018,37 +2045,37 @@ public class MainActivity extends SerialPortActivity {
                     if (sign != null && !TextUtils.isEmpty(sign)) {
                         if (sign.equals("1")) {
                             if (ls != null && ls.size() > 0) {
-                                DBManager db = new DBManager(MainActivity.this);
+                                DBManager db = new DBManager(MainActivity11111.this);
                                 db.deleteAllCourseCollectBean();
                                 for (CollectPointBean cpb : ls) {
                                     if (cpb.getType() == 1) {
                                         db.addCollectPoint(cpb);
                                     }
                                 }
-                                DBManager db2 = new DBManager(MainActivity.this);
+                                DBManager db2 = new DBManager(MainActivity11111.this);
 
                                 List<String> ls2 = db2.getAllCourseName();
                                 if (ls2 != null && ls2.size() > 0) {
-                                    PersonService.writeHangxian(MainActivity.this, hangXianPath, ls2, "0");
+                                    PersonService.writeHangxian(MainActivity11111.this, hangXianPath, ls2, "0");
                                 }
 
                             }
                         } else {
-                            DBManager db = new DBManager(MainActivity.this);
+                            DBManager db = new DBManager(MainActivity11111.this);
 
                             List<String> ls2 = db.getAllCourseName();
                             if (ls2 != null && ls2.size() > 0) {
-                                PersonService.writeHangxian(MainActivity.this, hangXianPath, ls2, "0");
+                                PersonService.writeHangxian(MainActivity11111.this, hangXianPath, ls2, "0");
                             }
                         }
                     }
 
                 } else {
-                    DBManager db = new DBManager(MainActivity.this);
+                    DBManager db = new DBManager(MainActivity11111.this);
 
                     List<String> ls = db.getAllCourseName();
                     if (ls != null && ls.size() > 0) {
-                        PersonService.writeHangxian(MainActivity.this, hangXianPath, ls, "0");
+                        PersonService.writeHangxian(MainActivity11111.this, hangXianPath, ls, "0");
                     }
                 }
         /*
@@ -2061,7 +2088,7 @@ public class MainActivity extends SerialPortActivity {
                     if (sign != null && !TextUtils.isEmpty(sign)) {
                         if (sign.equals("1")) {
                             if (ls != null && ls.size() > 0) {
-                                DBManager db = new DBManager(MainActivity.this);
+                                DBManager db = new DBManager(MainActivity11111.this);
                                 db.deleteAllCollectBean();
                                 for (CollectPointBean cpb : ls) {
                                     if (cpb.getType() == 0) {
@@ -2071,7 +2098,7 @@ public class MainActivity extends SerialPortActivity {
 
                             }
                         } else {
-                            DBManager db = new DBManager(MainActivity.this);
+                            DBManager db = new DBManager(MainActivity11111.this);
 
                             List<CollectPointBean> ls2 = db.getCollects();
                             if (ls2 != null && ls2.size() > 0) {
@@ -2080,7 +2107,7 @@ public class MainActivity extends SerialPortActivity {
                         }
                     }
                 } else {
-                    DBManager db = new DBManager(MainActivity.this);
+                    DBManager db = new DBManager(MainActivity11111.this);
 
                     List<CollectPointBean> ls2 = db.getCollects();
                     if (ls2 != null && ls2.size() > 0) {
@@ -2101,7 +2128,7 @@ public class MainActivity extends SerialPortActivity {
                 File a = new File(pathDZWL);
                 String str = null;
                 if (!a.exists()) {
-                    str = TxtFileUtile.getAssertTxtFile(MainActivity.this, "dzwl.txt");
+                    str = TxtFileUtile.getAssertTxtFile(MainActivity11111.this, "dzwl.txt");
                 } else {
                     str = TxtFileUtile.getTxtFile(pathDZWL);
                     Logger.i("dsjsfff" + str);
@@ -2109,7 +2136,7 @@ public class MainActivity extends SerialPortActivity {
                 if (str != null && !TextUtils.isEmpty(str)) {
                     String[] z = str.split(":");
                     Logger.i("dsjs" + str);
-                    SharePrefenerArrary.setSharedPreference(MainActivity.this, "txt_dzwl", z);
+                    SharePrefenerArrary.setSharedPreference(MainActivity11111.this, "txt_dzwl", z);
                 }
             }
         }).start();
@@ -2127,7 +2154,7 @@ public class MainActivity extends SerialPortActivity {
 
         return String.format("%x", (int) x);
     }
-
+/*
     @Override
     void receiver(String str) {
         if (null != my_ship) {
@@ -2149,9 +2176,9 @@ public class MainActivity extends SerialPortActivity {
                 Logger.i("dsgdsg:" + mmsi_cmd);
                 UART1Tx(mmsi_cmd);
             } else if (str.contains("$DUAIR,1,010*")) {
-/*
+*//*
 修改船舶属性
- */
+ *//*
 //        String a3="AISSD,A--A,B--B,C,D,E,F,G,H*hh"+mmsi;
                 String huhao = my_ship.getHuhao();
                 if (my_ship.getHuhao().length() < 7) {
@@ -2213,9 +2240,9 @@ public class MainActivity extends SerialPortActivity {
                 UART1Tx(ship_cmd);
 
             } else if (str.contains("$DUAIR,1,SSD*")) {
- /*
+ *//*
         配置航行静态数据
-        */
+        *//*
                 String type = "" + my_ship.getType();
                 if (type.length() < 3) {
                     for (int i = 0; i < 3 - type.length(); i++) {
@@ -2260,7 +2287,7 @@ public class MainActivity extends SerialPortActivity {
 //            Toast.makeText(MainActivity.this, "设置VSD失败", Toast.LENGTH_SHORT).show();
             }
         }
-    }
+    }*/
 
     /**
      * 获取内置SD卡路径
@@ -2271,17 +2298,7 @@ public class MainActivity extends SerialPortActivity {
         return Environment.getExternalStorageDirectory().getPath();
     }
 
-    /**
-     * 获取内置SD卡路径
-     *
-     * @return
-     */
-    public String getOuterSDCardPath() {
-
-        return Environment.getExternalStorageDirectory().getPath();
-    }
-
-    @Override
+   /* @Override
     void gpsreceiver(Gpsbean gpsbean) {
         if (gpsbean != null) {
             String jingdu = convertUtils.Longitude(gpsbean.getGpsLongitude());
@@ -2302,15 +2319,15 @@ public class MainActivity extends SerialPortActivity {
             tv2.setText("纬度：" + weidu);
         }
 
-        sp = getSharedPreferences("sp", MODE_PRIVATE);
-        int sfdw = sp.getInt("sfdw", 1);
-        if (sfdw == 1) {
+//        sp = getSharedPreferences("sp", MODE_PRIVATE);
+//        int sfdw = sp.getInt("sfdw", 1);
+     *//*   if (sfdw == 1) {
             dw.setText("未定位");
             dw.setTextColor(Color.RED);
         } else if (sfdw == 2) {
             dw.setText("已定位");
             dw.setTextColor(Color.GREEN);
-        }
+        }*//*
     }
 
     @Override
@@ -2318,22 +2335,23 @@ public class MainActivity extends SerialPortActivity {
 
     }
 
-
+*/
     /*
        停止三秒传一次
         */
-    public void stopPush() {
+/*    public void stopPush() {
         if (runnable != null) {
-
             handler.removeCallbacks(runnable);
             runnable = null;
         }
+    }*/
+/*
 
-    }
-
-    /*
+    */
+/*
     开始
-     */
+     *//*
+
     public void startPush() {
         if (handler == null) {
             handler = new Handler();
@@ -2343,26 +2361,20 @@ public class MainActivity extends SerialPortActivity {
                 @Override
                 public void run() {
                     initMap();
-                    // TODO Auto-generated method stub
-                    //要做的事情
-//                    String cmd = "!AIVDM,1,1,,B,8>qc9wh0@E=D85A5Dm@,2*49\r\n";
-////        Logger.i("zzz:"+cmd4);
-//                    UART1Tx(cmd);
                     Logger.i("aaaaaa1kr21212苛刻4");
                     handler.postDelayed(this, 15000);
-
                 }
             };
             handler.postDelayed(runnable, 5000);//每两秒执行一次runnable.
         }
     }
+*/
 
-    @Override
+/*    @Override
     protected void onStop() {
         stopPush();
         super.onStop();
-
-    }
+    }*/
 
     @Override
     protected void onResume() {
@@ -2375,50 +2387,27 @@ public class MainActivity extends SerialPortActivity {
         options.inInputShareable = true;// 以上options的两个属性必须联合使用才会有效果
 
         options.inSampleSize = 2;
-//        b = BitmapFactory
-//                .decodeResource(getResources(), R.drawable.test, options);
-//        sceneMap.setBitmap(b);
-        if (ship_a == null) {
-            ship_a = readBitmap(MainActivity.this, R.drawable.aleichuan);
 
-//            ship_a = BitmapFactory.decodeResource(getResources(),
-//                    R.drawable.aleichuan);
+      /*  if (ship_a == null) {
+            ship_a = readBitmap(MainActivity.this, R.drawable.aleichuan);
         }
         if (ship_b == null) {
             ship_b = readBitmap(MainActivity.this, R.drawable.bleichuan);
-//            ship_b = BitmapFactory.decodeResource(getResources(),
-//                    R.drawable.bleichuan);
-        }
-//        initMap();
-
-
+        }*/
         super.onResume();
         tileView.resume();
-        startPush();
+//        startPush();
     }
 
-    @Override
+ /*   @Override
     void toPager(String str, int isRunningBaojing, List<ShipBean> ls) {
 
     }
-
+*/
 
     @Override
     public void finish() {
-//        mUartTest.close_UART0();
-//        mUartTest.close_UART1();
-//
-//        mHandler.removeCallbacksAndMessages(null);
         super.finish();
-    }
-
-
-    /*
-     跳转到设置
-      */
-    public void goToSetting(View view) {
-        Intent intent = new Intent(MainActivity.this, ViewPagerActivity.class);
-        startActivity(intent);
     }
 
     @Override
@@ -2443,24 +2432,15 @@ public class MainActivity extends SerialPortActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    @Override
+ /*   @Override
     public void onBackPress(View view) {
-//        onBackPressed();
-
         Intent home = new Intent(Intent.ACTION_MAIN);
-//
         home.addCategory(Intent.CATEGORY_HOME);
 
         startActivity(home);
+    }*/
+/*
 
-
-    }
-
-    //    @Override
-//    public void onBackPressed() {
-//        super.onBackPressed();
-//        Logger.i("按下了back键   onBackPressed()");
-//    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -2470,9 +2450,6 @@ public class MainActivity extends SerialPortActivity {
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        // 如果菜单已经打开，则关闭
-        boolean drawerOpen = menuLayout.isDrawerOpen(menuElementsList);
-//		menu.findItem(R.id.action_search).setVisible(!drawerOpen);
 
         return super.onPrepareOptionsMenu(menu);
     }
@@ -2492,7 +2469,9 @@ public class MainActivity extends SerialPortActivity {
         return super.onOptionsItemSelected(item);
 //		}
     }
+*/
 
+/*
     private class DrawerItemClickListener implements
             ListView.OnItemClickListener {
         @Override
@@ -2504,18 +2483,6 @@ public class MainActivity extends SerialPortActivity {
 
     private void selectItem(int position) {
 
-//        Fragment fragment = new MenuFragment();
-//        Bundle args = new Bundle();
-//        args.putInt("position", position);
-//        fragment.setArguments(args);
-//        FragmentManager fragmentManager = getSupportFragmentManager();
-//        fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
-//        menuElementsList.setItemChecked(position, true);
-//        slideMenuAdapter.setSelectedPosition(position);
-//        slideMenuAdapter.notifyDataSetChanged();
-//        setTitle(menuNameList.get(position));
-
-//        setTitle("菜单");
         if (position != 0) {
             menuLayout.closeDrawer(menuElementsList);
         }
@@ -2550,9 +2517,11 @@ public class MainActivity extends SerialPortActivity {
         getActionBar().setTitle(activityTitle);
     }
 
-    /**
+    */
+/**
      * 点击菜单按钮，打开或关闭menu
-     */
+     *//*
+
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -2644,6 +2613,7 @@ public class MainActivity extends SerialPortActivity {
             return false;
         }
 
+
         // 清空状态
 
         private void clear() {
@@ -2652,10 +2622,10 @@ public class MainActivity extends SerialPortActivity {
             lastClick = 0;
         }
     }
-
-    /**
+*/
+   /* *//**
      * 坐标位置监听
-     */
+     *//*
     private LocationListener locationListener = new LocationListener() {
 
         @Override
@@ -2726,13 +2696,13 @@ public class MainActivity extends SerialPortActivity {
     }
 
     static long TemTime = -1;
-    /*
+    *//*
     定位时间
-     */
+     *//*
     static long locationTime = -1;
-    /*
+    *//*
     时间差
-     */
+     *//*
     static long timeSub = 0;
 
     // date要转换的date类型的时间
@@ -2764,8 +2734,8 @@ public class MainActivity extends SerialPortActivity {
         Date date = null;
         date = formatter.parse(strTime);
         return date;
-    }
-
+    }*/
+/*
     //在主线程里面处理消息并更新UI界面
     private Handler mHandler2 = new Handler() {
         @Override
@@ -2858,5 +2828,5 @@ public class MainActivity extends SerialPortActivity {
                 }
             }
         });
-    }
+    }*/
 }

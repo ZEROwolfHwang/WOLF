@@ -172,8 +172,6 @@ public class CollectActivity extends SerialPortActivity {
                 int i=0;
                 for( i=0;i<childList.get(0).size();i++){
                     if(childList.get(0).get(i).equals(name)){
-
-
                         break;
                     }
                 }

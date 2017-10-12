@@ -1,9 +1,6 @@
 package com.yisipu.chartmap.adapter;
 
-import java.util.List;
-
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +10,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yisipu.chartmap.CollectActivity;
-import com.yisipu.chartmap.MainActivity;
 import com.yisipu.chartmap.R;
 import com.yisipu.chartmap.db.DBManager;
+
+import java.util.List;
 
 
 public class AllAdpter extends BaseExpandableListAdapter {
@@ -85,7 +83,6 @@ public class AllAdpter extends BaseExpandableListAdapter {
             public void onClick(View v) {
 
                 if(groupPosition==0) {
-
 
                     ((CollectActivity) context).UpdateCollect(chilerd.get(groupPosition).get(childPosition));
                 }else if(groupPosition==1){

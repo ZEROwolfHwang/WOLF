@@ -21,7 +21,6 @@ import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -74,6 +73,7 @@ import java.util.List;
 //测量Activity
 public class DhActivity extends SerialPortActivity {
     private Animation myAnimation_Scale;
+
     /*
     减级别按钮
      */
@@ -86,21 +86,21 @@ public class DhActivity extends SerialPortActivity {
 
 //
 
-        if (b >0.5) {
+        if (b > 0.5) {
 
             tileView.setScaleFromCenter(b / 2);
-            myAnimation_Scale =new ScaleAnimation(0.5f, 0.1f,0.5f, 0.1f,
+            myAnimation_Scale = new ScaleAnimation(0.5f, 0.1f, 0.5f, 0.1f,
                     Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
             tileView.setAnimation(myAnimation_Scale);
             tileView.setAnimationDuration(800);
             tileView.smoothScaleFromCenter(b / 2);
 //            tileView.setScaleFromCenter(b);
-            double z = Math.log(Constant.TimesNeed*b / 2) / Math.log(2);
+            double z = Math.log(Constant.TimesNeed * b / 2) / Math.log(2);
             double s = Constant.gongliMaxBl / Math.pow(2, z);
 
-            double[] point3 = {(120 - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5+1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5-Constant.minX5+1), Constant.WpTimes * (GetLongLati.getY(24, 5) - Constant.minY5 * 256)};
+            double[] point3 = {(120 - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1), Constant.WpTimes * (GetLongLati.getY(24, 5) - Constant.minY5 * 256)};
             double jd2 = LocationUtils.doLngDegress((long) (1852 * Constant.gongliMaxBl / 1000), 24);
-            double x2 = ((jd2 + 120) - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5+1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5-Constant.minX5+1);
+            double x2 = ((jd2 + 120) - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1);
             double s2 = Math.abs(x2 - point3[0]);
             Logger.i("sdgskk" + s2);
             android.view.ViewGroup.LayoutParams lp = cj_lla_blc
@@ -123,17 +123,17 @@ public class DhActivity extends SerialPortActivity {
         if (zls != null && zls.size() > 0) {
             if (b <= 8.0000f * (Math.pow(2, (zls.get(zls.size() - 1)) - 9 - 1))) {
 //                tileView.setScaleFromCenter(b * 2);
-                myAnimation_Scale =new ScaleAnimation(0.5f, 0.8f, 0.5f, 0.8f,
+                myAnimation_Scale = new ScaleAnimation(0.5f, 0.8f, 0.5f, 0.8f,
                         Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
                 tileView.setAnimation(myAnimation_Scale);
                 tileView.setAnimationDuration(800);
                 tileView.smoothScaleFromCenter(b * 2);
-                double z = Math.log(Constant.TimesNeed*b * 2) / Math.log(2);
+                double z = Math.log(Constant.TimesNeed * b * 2) / Math.log(2);
                 double s = Constant.gongliMaxBl / Math.pow(2, z);
 
-                double[] point3 = {(120 - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5+1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5-Constant.minX5+1), Constant.WpTimes * (GetLongLati.getY(24, 5) - Constant.minY5 * 256)};
+                double[] point3 = {(120 - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1), Constant.WpTimes * (GetLongLati.getY(24, 5) - Constant.minY5 * 256)};
                 double jd2 = LocationUtils.doLngDegress((long) (1852 * Constant.gongliMaxBl / 1000), 24);
-                double x2 = ((jd2 + 120) - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5+1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5-Constant.minX5+1);
+                double x2 = ((jd2 + 120) - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1);
                 double s2 = Math.abs(x2 - point3[0]);
                 Logger.i("sdgskk" + s2);
                 android.view.ViewGroup.LayoutParams lp = cj_lla_blc
@@ -147,12 +147,12 @@ public class DhActivity extends SerialPortActivity {
         } else {
             if (b <= 4) {
                 tileView.smoothScaleFromCenter(b * 2);
-                double z = Math.log(Constant.TimesNeed*b * 2) / Math.log(2);
+                double z = Math.log(Constant.TimesNeed * b * 2) / Math.log(2);
                 double s = Constant.gongliMaxBl / Math.pow(2, z);
 
-                double[] point3 = {(120 - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5+1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5-Constant.minX5+1), Constant.WpTimes * (GetLongLati.getY(24, 5) - Constant.minY5 * 256)};
+                double[] point3 = {(120 - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1), Constant.WpTimes * (GetLongLati.getY(24, 5) - Constant.minY5 * 256)};
                 double jd2 = LocationUtils.doLngDegress((long) (1852 * Constant.gongliMaxBl / 1000), 24);
-                double x2 = ((jd2 + 120) - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5+1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5-Constant.minX5+1);
+                double x2 = ((jd2 + 120) - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1);
                 double s2 = Math.abs(x2 - point3[0]);
                 Logger.i("sdgskk" + s2);
                 android.view.ViewGroup.LayoutParams lp = cj_lla_blc
@@ -246,9 +246,9 @@ public class DhActivity extends SerialPortActivity {
     private Runnable runnable;
     SharedPreferences sp;
     Thread gpsThread;
-    Bitmap ship_a=null;
-    Bitmap ship_b=null;
-    Bitmap yuan_3=null;
+    Bitmap ship_a = null;
+    Bitmap ship_b = null;
+    Bitmap yuan_3 = null;
     //地图的经纬度差
     double mapXLength = 60.0;
     double mapYLength = 28.0;
@@ -265,8 +265,8 @@ public class DhActivity extends SerialPortActivity {
     List<ShipBean> temp_ls = new ArrayList<>();
     List<double[]> lslist = new ArrayList<>();
     List<String> hdname = new ArrayList<>();
-    List<CollectPointBean> hxlist = new ArrayList<>();
-    List<CollectPointBean> hdlist = new ArrayList<>();//保存通过航线查到的航点
+    List<CollectPointBean> navLineList = new ArrayList<>();
+    List<CollectPointBean> navPointList = new ArrayList<>();//保存通过航线查到的航点
 
     public void initMap() {
         DBManager db = new DBManager(this);
@@ -285,7 +285,7 @@ public class DhActivity extends SerialPortActivity {
 //        tileView.getCompositePathView().clear();
         for (final ShipBean sb : ls) {
             if (sb.getLatitude() != -1 && sb.getLongitude() != -1 && !(sb.getLongitude() > 180) && !(sb.getLatitude() > 90)) {
-                double[] point = {(sb.getLongitude() - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5+1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5-Constant.minX5+1), Constant.WpTimes * (GetLongLati.getY(sb.getLatitude(), 5) - Constant.minY5 * 256)};
+                double[] point = {(sb.getLongitude() - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1), Constant.WpTimes * (GetLongLati.getY(sb.getLatitude(), 5) - Constant.minY5 * 256)};
 
                 //任何视图将做…
                 ImageView marker = new ImageView(this);
@@ -370,9 +370,9 @@ public class DhActivity extends SerialPortActivity {
                     float kh2 = (float) (k12 - 0.5f);
                     float khy2 = (float) (k22 - 0.5f);
                     if (sb.getMyShip()) {
-                        tileView.addMarker2(marker,Constant.TimesNeed* point[0], Constant.TimesNeed*point[1], kh2, khy2, 80, 80);
+                        tileView.addMarker2(marker, Constant.TimesNeed * point[0], Constant.TimesNeed * point[1], kh2, khy2, 80, 80);
                     } else {
-                        tileView.addMarker2(marker,Constant.TimesNeed* point[0],Constant.TimesNeed* point[1], kh2, khy2, 40, 40);
+                        tileView.addMarker2(marker, Constant.TimesNeed * point[0], Constant.TimesNeed * point[1], kh2, khy2, 40, 40);
                     }
                 }
 //
@@ -429,7 +429,6 @@ public class DhActivity extends SerialPortActivity {
     List<ShipBean> ls = null;
 
 
-
     Bitmap b;
 
     //singleTask加载模式
@@ -466,7 +465,7 @@ public class DhActivity extends SerialPortActivity {
     public static final double NORTH_WEST_LATITUDE = GetLongLati.getlat(Constant.minY5, 0, 5);//西北经度
     public static final double NORTH_WEST_LONGITUDE = GetLongLati.getLong(Constant.minX5, 0, 5);//西北纬度
     public static final double SOUTH_EAST_LATITUDE = GetLongLati.getlat(16, 0, 5);//东南经度
-    public static final double SOUTH_EAST_LONGITUDE = GetLongLati.getLong((Constant.maxX5+1), 0, 5);//东南纬度
+    public static final double SOUTH_EAST_LONGITUDE = GetLongLati.getLong((Constant.maxX5 + 1), 0, 5);//东南纬度
 
     private float windowWidth, windowHeight;
     private double CirX = 0;
@@ -568,12 +567,12 @@ public class DhActivity extends SerialPortActivity {
 
     {
 
-        points.add(new double[]{Constant.TimesNeed*(120.0 - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5+1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5-Constant.minX5+1),Constant.TimesNeed* Constant.WpTimes * (GetLongLati.getY(24, 5) - Constant.minY5 * 256)});
-        points.add(new double[]{Constant.TimesNeed*(118.0 - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5+1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5-Constant.minX5+1),Constant.TimesNeed* Constant.WpTimes * (GetLongLati.getY(23, 5) - Constant.minY5 * 256)});
-        points.add(new double[]{Constant.TimesNeed*(116.0 - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5+1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5-Constant.minX5+1),Constant.TimesNeed* Constant.WpTimes * (GetLongLati.getY(22, 5) - Constant.minY5 * 256)});
-        points.add(new double[]{Constant.TimesNeed*(120.0 - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5+1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5-Constant.minX5+1), Constant.TimesNeed*Constant.WpTimes * (GetLongLati.getY(23.5, 5) - Constant.minY5 * 256)});
-        points.add(new double[]{Constant.TimesNeed*(118.0 - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5+1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5-Constant.minX5+1), Constant.TimesNeed*Constant.WpTimes * (GetLongLati.getY(23.2, 5) - Constant.minY5 * 256)});
-        points.add(new double[]{Constant.TimesNeed*(116.0 - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5+1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5-Constant.minX5+1),Constant.TimesNeed* Constant.WpTimes * (GetLongLati.getY(22.3, 5) - Constant.minY5 * 256)});
+        points.add(new double[]{Constant.TimesNeed * (120.0 - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1), Constant.TimesNeed * Constant.WpTimes * (GetLongLati.getY(24, 5) - Constant.minY5 * 256)});
+        points.add(new double[]{Constant.TimesNeed * (118.0 - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1), Constant.TimesNeed * Constant.WpTimes * (GetLongLati.getY(23, 5) - Constant.minY5 * 256)});
+        points.add(new double[]{Constant.TimesNeed * (116.0 - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1), Constant.TimesNeed * Constant.WpTimes * (GetLongLati.getY(22, 5) - Constant.minY5 * 256)});
+        points.add(new double[]{Constant.TimesNeed * (120.0 - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1), Constant.TimesNeed * Constant.WpTimes * (GetLongLati.getY(23.5, 5) - Constant.minY5 * 256)});
+        points.add(new double[]{Constant.TimesNeed * (118.0 - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1), Constant.TimesNeed * Constant.WpTimes * (GetLongLati.getY(23.2, 5) - Constant.minY5 * 256)});
+        points.add(new double[]{Constant.TimesNeed * (116.0 - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1), Constant.TimesNeed * Constant.WpTimes * (GetLongLati.getY(22.3, 5) - Constant.minY5 * 256)});
 
     }
 
@@ -624,7 +623,7 @@ public class DhActivity extends SerialPortActivity {
         }
         tileView.setBitmapProvider(new BitmapProviderAssets3());
 //        tileView.setSize(Constant.wapianWidth * 3, Constant.wapianWidth* 5);
-        tileView.setSize(Constant.TimesNeed*Constant.wapianWidth * (Constant.maxX5-Constant.minX5+1), Constant.TimesNeed*Constant.wapianWidth *(Constant.maxY5-Constant.minY5+1));
+        tileView.setSize(Constant.TimesNeed * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1), Constant.TimesNeed * Constant.wapianWidth * (Constant.maxY5 - Constant.minY5 + 1));
         // markers should align to the coordinate along the horizontal center and vertical bottom
         //标记应沿水平中心和垂直底部的坐标对齐
         tileView.setMarkerAnchorPoints(-0.5f, -1.0f);
@@ -713,7 +712,7 @@ public class DhActivity extends SerialPortActivity {
             @Override
             public void onZoomBegin(float scale, Origination origin) {
                 Logger.i("sgsdg" + scale);
-                startScale =  getTileView().getDetailLevelManager().getScale();
+                startScale = getTileView().getDetailLevelManager().getScale();
             }
 
             @Override
@@ -723,23 +722,23 @@ public class DhActivity extends SerialPortActivity {
 
             @Override
             public void onZoomEnd(float scale, Origination origin) {
-                float maxScale=16f;
+                float maxScale = 16f;
                 if (zls != null && zls.size() > 0) {
                     //试验高于1
-                    maxScale=(float) (8f * (Math.pow(2, (zls.get(zls.size() - 1) - 9))));
+                    maxScale = (float) (8f * (Math.pow(2, (zls.get(zls.size() - 1) - 9))));
 
                 } else {
                     //试验高于1
-                    maxScale=8f;
+                    maxScale = 8f;
 
                 }
                 Logger.i("sgsdg3" + scale);
                 endScale = scale;
-                if(startScale!=-1&&(Constant.TimesNeed*startScale*2)%2==0) {
-                    if ((endScale - startScale) >= 0.5*startScale&&startScale<=maxScale) {
-                        float b =2 * startScale;
+                if (startScale != -1 && (Constant.TimesNeed * startScale * 2) % 2 == 0) {
+                    if ((endScale - startScale) >= 0.5 * startScale && startScale <= maxScale) {
+                        float b = 2 * startScale;
                         tileView.setScaleFromCenter(b);
-                        double z = Math.log(Constant.TimesNeed*b) / Math.log(2);
+                        double z = Math.log(Constant.TimesNeed * b) / Math.log(2);
                         double s = Constant.gongliMaxBl / Math.pow(2, z);
 //                    Logger.i("z" + z + "sgdg" + s + "dgs" + a + "sgss" + b);
 //                          blc_gongli=blc_gongli/Math.pow(2,z);
@@ -754,10 +753,10 @@ public class DhActivity extends SerialPortActivity {
                         cj_lla_blc.setLayoutParams(lp);
                         DecimalFormat df3 = new DecimalFormat("##0.00");
                         tv_gongli.setText("" + df3.format(s) + "海里");
-                    } else if ((startScale - endScale) >= (startScale / 2)&&startScale>=1) {
+                    } else if ((startScale - endScale) >= (startScale / 2) && startScale >= 1) {
                         float b = startScale / 2;
                         tileView.setScaleFromCenter(b);
-                        double z = Math.log(Constant.TimesNeed*b) / Math.log(2);
+                        double z = Math.log(Constant.TimesNeed * b) / Math.log(2);
                         double s = Constant.gongliMaxBl / Math.pow(2, z);
 //                    Logger.i("z" + z + "sgdg" + s + "dgs" + a + "sgss" + b);
 //                          blc_gongli=blc_gongli/Math.pow(2,z);
@@ -775,7 +774,7 @@ public class DhActivity extends SerialPortActivity {
                     } else {
                         float b = startScale;
                         tileView.setScaleFromCenter(b);
-                        double z = Math.log(Constant.TimesNeed*b) / Math.log(2);
+                        double z = Math.log(Constant.TimesNeed * b) / Math.log(2);
                         double s = Constant.gongliMaxBl / Math.pow(2, z);
 //                    Logger.i("z" + z + "sgdg" + s + "dgs" + a + "sgss" + b);
 //                          blc_gongli=blc_gongli/Math.pow(2,z);
@@ -793,7 +792,7 @@ public class DhActivity extends SerialPortActivity {
                     }
 
 //                endScale =  getTileView().getDetailLevelManager().getScale();
-                    Logger.i("sgkkkk3" + scale+"sdgsg"+startScale);
+                    Logger.i("sgkkkk3" + scale + "sdgsg" + startScale);
 //                if (startScale != -1) {
 //                    float sS = endScale - startScale;
 //                    if (sS > 0.1) {
@@ -886,29 +885,29 @@ public class DhActivity extends SerialPortActivity {
         int size = points.size();
         x = x / size;
         y = y / size;
-        if(main_scale!=-1){
+        if (main_scale != -1) {
             DBManager db = new DBManager(this);
             ShipBean sb = db.getMyShip();
             if (null != sb && sb.getLatitude() != -1 && sb.getLongitude() != -1 && sb.getLatitude() <= 90 && sb.getLongitude() <= 180) {
                 double jd = sb.getLongitude();
                 double wd = sb.getLatitude();
                 tileView.setScale(main_scale);
-                frameTo(Constant.TimesNeed*(jd - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5+1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5-Constant.minX5+1),Constant.TimesNeed* Constant.WpTimes * (GetLongLati.getY(wd, 5) - Constant.minY5 * 256));
+                frameTo(Constant.TimesNeed * (jd - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1), Constant.TimesNeed * Constant.WpTimes * (GetLongLati.getY(wd, 5) - Constant.minY5 * 256));
             } else {
                 frameTo(x, y);
                 tileView.setScale(0.5f);
             }
-        }else{
+        } else {
             frameTo(x, y);
             tileView.setScale(0.5f);
         }
         float b = tileView.getDetailLevelManager().getCurrentDetailLevel().getScale();
-        double z = Math.log(Constant.TimesNeed*b) / Math.log(2);
+        double z = Math.log(Constant.TimesNeed * b) / Math.log(2);
         double s = Constant.gongliMaxBl / Math.pow(2, z);
 
-        double[] point3 = {(120 - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5+1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5-Constant.minX5+1), Constant.WpTimes * (GetLongLati.getY(24, 5) - Constant.minY5 * 256)};
+        double[] point3 = {(120 - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1), Constant.WpTimes * (GetLongLati.getY(24, 5) - Constant.minY5 * 256)};
         double jd2 = LocationUtils.doLngDegress((long) (1852 * Constant.gongliMaxBl / 1000), 24);
-        double x2 = ((jd2 + 120) - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5+1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5-Constant.minX5+1);
+        double x2 = ((jd2 + 120) - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1);
         double s2 = Math.abs(x2 - point3[0]);
         Logger.i("sdgskk" + s2);
         android.view.ViewGroup.LayoutParams lp = cj_lla_blc
@@ -988,8 +987,8 @@ public class DhActivity extends SerialPortActivity {
                     jwpoints.clear();
                     jlpoints.clear();
                     hdpoints.clear();
-                    hxlist.clear();
-                    hdlist.clear();
+                    navLineList.clear();
+                    navPointList.clear();
                     if (ImageDList != null) {
                         ImageDList.clear();
                     }
@@ -1019,7 +1018,7 @@ public class DhActivity extends SerialPortActivity {
 //                zjl = 0;
 //                ImageView marker = new ImageView(CjActivity.this);
                 if (dhflag == 0) {
-                    if (hdlist.size() > 0) {
+                    if (navPointList.size() > 0) {
                         Toast.makeText(DhActivity.this, "收藏航线无法撤销", Toast.LENGTH_SHORT).show();
                     } else {
                         if (cjpoints.size() > 0) {
@@ -1027,7 +1026,7 @@ public class DhActivity extends SerialPortActivity {
                             hdpoints.remove(hdpoints.size() - 1);
                             cjpoints.remove(cjpoints.size() - 1);
                             jwpoints.remove(jwpoints.size() - 1);
-                            maphdName.remove( maphdName.size() - 1);
+                            maphdName.remove(maphdName.size() - 1);
                             if (jlpoints.size() != 0) {
                                 jlpoints.remove(jlpoints.size() - 1);
                             }
@@ -1040,8 +1039,8 @@ public class DhActivity extends SerialPortActivity {
                                 tileView.getMarkerLayout().removeMarker(tvList.get(tvList.size() - 1));
                                 tvList.remove(tvList.size() - 1);
                             }
-                            if (hxlist.size() != 0) {
-                                hxlist.remove(hxlist.size() - 1);
+                            if (navLineList.size() != 0) {
+                                navLineList.remove(navLineList.size() - 1);
                             }
                             if (hxlist2 != null && hxlist2.size() != 0) {
                                 hxlist2.remove(hxlist2.size() - 1);
@@ -1141,7 +1140,7 @@ public class DhActivity extends SerialPortActivity {
                         float kh2 = (float) (-0.5 + k12);
                         float khy2 = (float) (-0.5 + k22);
 //                            Logger.i("sdgzzzzzdfs"+kh+"dsdfaa"+khy);
-                        tileView.addMarker2(textView, Constant.TimesNeed*cjpoints.get(i)[0],Constant.TimesNeed* cjpoints.get(i)[1], kh2 - 0.5f, khy2, 40, 40);
+                        tileView.addMarker2(textView, Constant.TimesNeed * cjpoints.get(i)[0], Constant.TimesNeed * cjpoints.get(i)[1], kh2 - 0.5f, khy2, 40, 40);
                         if (ImageDList.get(i) != -1) {
                             imageView.setImageResource(Constant.hdImage[ImageDList.get(i)]);
                         } else {
@@ -1152,7 +1151,7 @@ public class DhActivity extends SerialPortActivity {
 
                         dhimgList.add(imageView);
 
-                        tileView.addMarker2(imageView, Constant.TimesNeed*cjpoints.get(i)[0], Constant.TimesNeed*cjpoints.get(i)[1], kh2, khy2, 40, 40);
+                        tileView.addMarker2(imageView, Constant.TimesNeed * cjpoints.get(i)[0], Constant.TimesNeed * cjpoints.get(i)[1], kh2, khy2, 40, 40);
 //                            tileView.addMarker(textView, point[0], point[1], null, null);
 
                     }
@@ -1182,14 +1181,13 @@ public class DhActivity extends SerialPortActivity {
                             if (hdpoints.size() != 0) {
                                 bcjuliBean = hdpoints.get(0);
                             }//本船到的第一个点的经纬度
-                            double[] aa = {(myjuliBean.getJingdu() - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5+1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5-Constant.minX5+1), Constant.WpTimes * (GetLongLati.getY(myjuliBean.getWeidu(), 5) - Constant.minY5 * 256)};
+                            double[] aa = {(myjuliBean.getJingdu() - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1), Constant.WpTimes * (GetLongLati.getY(myjuliBean.getWeidu(), 5) - Constant.minY5 * 256)};
                             lslist.add(aa);
 
 
+                            lslist.addAll(cjpoints);
 
-                                lslist.addAll(cjpoints);
-
-                            tileView.drawPath3( lslist.subList(0,  lslist.size()), null);
+                            tileView.drawPath3(lslist.subList(0, lslist.size()), null);
 //                            tileView.drawPath2(lslist.subList(0, lslist.size()), null);
 //                if(cjpoints!=null&&cjpoints.size()>0) {
 //                    tileView.drawPath2(cjpoints.subList(0, cjpoints.size()), paint);
@@ -1229,20 +1227,9 @@ public class DhActivity extends SerialPortActivity {
                         }
                     }
                 }
-//
-// }
-//               Toast.makeText(CjActivity.this, "经度"+(GetLongLati.pixelToLng(((v.getScrollX()+event.getX())/( fraction/scale2)+25*(256)*scale2),zoom))+"纬度"+(GetLongLati.pixelToLat(((v.getScrollY()+event.getY())/( fraction/scale2)+(11*(256)*scale2)),zoom)), Toast.LENGTH_SHORT).show();
-                Logger.d("getJingduhah", "xxxxxxxxxxx" + (GetLongLati.pixelToLng(((v.getScrollX() + event.getX()) / (fraction / scale2) + Constant.minX5 * (256) * scale2), zoom)) + "y" + (GetLongLati.pixelToLat(((v.getScrollY() + event.getY()) / (fraction / scale2) + (Constant.minY5 * (256) * scale2)), zoom)));
-                Logger.d("getScale", "" + fraction);
-                Logger.d("getPivotX", "x" + tileView.getPivotX() + "   y" + tileView.getPivotY());
-                Logger.d("getX", "x" + tileView.getX() + "   y" + tileView.getY());
-                Logger.d("getScaleX", "x" + tileView.getOffsetX() + "   y" + tileView.getOffsetY());
-                Logger.d("getLeft", "x" + tileView.getRight() + "   y" + tileView.getBottom());
-                Logger.d("getScaledHeight", "x" + tileView.getScaledHeight() + "   y" + tileView.getScaledWidth());
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     xDown = event.getX();
                     yDown = event.getY();
-                    Log.v("OnTouchListener", "Down");
 
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {// 松开处理
                     //获取松开时的x坐标
@@ -1253,31 +1240,23 @@ public class DhActivity extends SerialPortActivity {
                     }
                     xUp = event.getX();
 
-                    Log.v("OnTouchListener", "Up");
-                    //按下和松开绝对值差当大于20时滑动，否则不显示
-                    if ((xUp - xDown) > 20) {
-                        //添加要处理的内容
-                    } else if ((xUp - xDown) < -20) {
-                        //添加要处理的内容
-                    } else if (10 > (xDown - xUp)) {
-
-//                        tileView.getCompositePathView().clear();
+                    if (10 > (xDown - xUp)) {
                         int viewWidth = v.getWidth();
                         if (hxpd == 0 || hxpd == 2) {
                             //经度lon 纬度lat
-                            double wd = (GetLongLati.pixelToLat((((v.getScrollY() + event.getY()) / Constant.WpTimes) / (fraction / scale2) + (Constant.minY5 * (256) * Constant.TimesNeed*scale2)), zoom));
-                            double jd = (GetLongLati.pixelToLng((((v.getScrollX() + event.getX()) / Constant.WpTimes) / (fraction / scale2) + Constant.minX5 * (256) *Constant.TimesNeed* scale2), zoom));
-//                        double jd = (GetLongLati.pixelToLng(((v.getScrollX() + event.getX()) / (fraction / scale2) + 25 * (256) * scale2), zoom));
-//                        double wd = (GetLongLati.pixelToLat(((v.getScrollY() + event.getY()) / (fraction / scale2) + (11 * (256) * scale2)), zoom));
+                            double weidu = (GetLongLati.pixelToLat((((v.getScrollY() + event.getY()) / Constant.WpTimes) / (fraction / scale2) + (Constant.minY5 * (256) * Constant.TimesNeed * scale2)), zoom));
+                            double jingdu = (GetLongLati.pixelToLng((((v.getScrollX() + event.getX()) / Constant.WpTimes) / (fraction / scale2) + Constant.minX5 * (256) * Constant.TimesNeed * scale2), zoom));
+//                        double jingdu = (GetLongLati.pixelToLng(((v.getScrollX() + event.getX()) / (fraction / scale2) + 25 * (256) * scale2), zoom));
+//                        double weidu = (GetLongLati.pixelToLat(((v.getScrollY() + event.getY()) / (fraction / scale2) + (11 * (256) * scale2)), zoom));
                             JuliBean juliBean = new JuliBean();
-//                            double[] point = {(jd - GetLongLati.getLong(25, 0, 5)) / ((GetLongLati.getLong(28, 0, 5) - GetLongLati.getLong(25, 0, 5))) * Constant.wapianWidth * 3, Constant.WpTimes * (GetLongLati.getY(wd, 5) - 11 * 256)};
-                            double[] jwpoint = {jd, wd};
-                            juliBean.setJingdu(jd);
-                            juliBean.setWeidu(wd);
+//                            double[] point = {(jingdu - GetLongLati.getLong(25, 0, 5)) / ((GetLongLati.getLong(28, 0, 5) - GetLongLati.getLong(25, 0, 5))) * Constant.wapianWidth * 3, Constant.WpTimes * (GetLongLati.getY(weidu, 5) - 11 * 256)};
+                            double[] jwpoint = {jingdu, weidu};
+                            juliBean.setJingdu(jingdu);
+                            juliBean.setWeidu(weidu);
                             hdpoints.add(juliBean);
                             jwpoints.add(jwpoint);
 //                        hdpoints.remove(0);
-                            cjpoints.add(new double[]{(jd - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5+1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5-Constant.minX5+1), Constant.WpTimes * (GetLongLati.getY(wd, 5) - Constant.minY5 * 256)});
+                            cjpoints.add(new double[]{(jingdu - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1), Constant.WpTimes * (GetLongLati.getY(weidu, 5) - Constant.minY5 * 256)});
                             ImageView marker = new ImageView(DhActivity.this);
                             double poinhx = DecimalCalculate.add(v.getScrollX(), event.getX());
                             double poinhy = DecimalCalculate.add(v.getScrollY(), event.getY());
@@ -1297,19 +1276,6 @@ public class DhActivity extends SerialPortActivity {
 
                             ImageDList.add(-1);
                             maphdName.add(hd + "");
-
-
-//
-//                            double k=DecimalCalculate.div(ax,(400+0.0));
-//                            double k2=DecimalCalculate.div(ay,(400+0.0));
-////                            double k2=ay/(40+0f);
-//                            float kh=DecimalCalculate.convertsToFloat(k);
-//                            float khy=DecimalCalculate.convertsToFloat(-0.5+ k2);
-//                            Logger.i("sdgzzzzz"+kh+"dsdf"+khy+"saa"+ax+"dskds"+k+"dsg"+k2);
-
-//                            tileView.addMarker2(marker, point[0], point[1],kh, khy,400,400);
-
-//                       Logger.i("dsdfs"+ax+"dg"+ay+"ddf"+k+"dfsg"+k2+view.getLayoutParams().height+view.getLayoutParams().width);
                             double k = (sx * scale2) / (40 + 0f);
                             double k2 = (sy * scale2) / (40 + 0f);
                             float kh = (float) (-0.5 + k);
@@ -1323,11 +1289,11 @@ public class DhActivity extends SerialPortActivity {
                             //添加航点到航线的集合中
                             CollectPointBean collectPointBean = new CollectPointBean();
                             collectPointBean.setType(1);
-                            collectPointBean.setLatitude(wd);
-                            collectPointBean.setLongitude(jd);
+                            collectPointBean.setLatitude(weidu);
+                            collectPointBean.setLongitude(jingdu);
                             collectPointBean.setName(hd + "");
                             collectPointBean.setIndex(hd - 1);
-                            hxlist.add(collectPointBean);
+                            navLineList.add(collectPointBean);
                             hd++;
                             textView.setTextColor(Color.BLACK);
 
@@ -1413,7 +1379,8 @@ public class DhActivity extends SerialPortActivity {
     TextView tv_gongli;
     TextView tv_line_cl;
     List<Integer> zls = new ArrayList<>();
-    float main_scale=-1;
+    float main_scale = -1;
+
     /*
    流方式读取图片
     */
@@ -1425,6 +1392,7 @@ public class DhActivity extends SerialPortActivity {
         InputStream is = context.getResources().openRawResource(resId);
         return BitmapFactory.decodeStream(is, null, opts);
     }
+
     /*
    流方式读取圆图片
     */
@@ -1433,11 +1401,12 @@ public class DhActivity extends SerialPortActivity {
         opts.inPreferredConfig = Bitmap.Config.RGB_565;
         opts.inPurgeable = true;
         opts.inInputShareable = true;
-        opts.outWidth=40;
-        opts.outHeight=40;
+        opts.outWidth = 40;
+        opts.outHeight = 40;
         InputStream is = context.getResources().openRawResource(resId);
         return BitmapFactory.decodeStream(is, null, opts);
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -1467,11 +1436,11 @@ public class DhActivity extends SerialPortActivity {
         Intent intentz = getIntent();
         if (intentz != null) {
             zls = (List<Integer>) intentz.getSerializableExtra("zList");
-            main_scale=intentz.getFloatExtra("main_scale",-1);
+            main_scale = intentz.getFloatExtra("main_scale", -1);
         }
         ship_a = readBitmap(DhActivity.this, R.drawable.aleichuan);
         ship_b = readBitmap(DhActivity.this, R.drawable.bleichuan);
-        yuan_3= readYBitmap(DhActivity.this, R.drawable.yuand3);
+        yuan_3 = readYBitmap(DhActivity.this, R.drawable.yuand3);
         initTileView();
         gps = (TextView) findViewById(R.id.tv_jing_weidu);
 //        ms = (ImageView) findViewById(R.id.main_ms);
@@ -1791,7 +1760,7 @@ public class DhActivity extends SerialPortActivity {
                     double jd = hxlist2.get(i).getLongitude();
                     double wd = hxlist2.get(i).getLatitude();
                     JuliBean juliBean = new JuliBean();
-                    double[] point = {(jd - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5+1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5-Constant.minX5+1), Constant.WpTimes * (GetLongLati.getY(wd, 5) - Constant.minY5 * 256)};
+                    double[] point = {(jd - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1), Constant.WpTimes * (GetLongLati.getY(wd, 5) - Constant.minY5 * 256)};
                     double[] jwpoint = {jd, wd};
                     juliBean.setJingdu(jd);
                     juliBean.setWeidu(wd);
@@ -1799,12 +1768,12 @@ public class DhActivity extends SerialPortActivity {
                     jwpoints.add(jwpoint);
 //                    hdname.add(name);
 //                        hdpoints.remove(0);
-                    cjpoints.add(new double[]{(jd - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5+1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5-Constant.minX5+1), Constant.WpTimes * (GetLongLati.getY(wd, 5) - Constant.minY5 * 256)});
+                    cjpoints.add(new double[]{(jd - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1), Constant.WpTimes * (GetLongLati.getY(wd, 5) - Constant.minY5 * 256)});
                     ImageView marker = new ImageView(DhActivity.this);
                     marker.setTag(point);
                     marker.setImageBitmap(yuan_3);
                     tileView.getMarkerLayout().setMarkerTapListener(markerTapListener);
-                    tileView.addMarker(marker, Constant.TimesNeed*point[0], Constant.TimesNeed* point[1], null, -0.5f);
+                    tileView.addMarker(marker, Constant.TimesNeed * point[0], Constant.TimesNeed * point[1], null, -0.5f);
                     dhimgList.add(marker);
                     TextView textView = new TextView(DhActivity.this);
                     textView.setText(hxlist2.get(i).getName());
@@ -1812,7 +1781,7 @@ public class DhActivity extends SerialPortActivity {
                     textView.setTextColor(Color.BLACK);
 
                     ;
-                    tileView.addMarker(textView,Constant.TimesNeed* point[0],Constant.TimesNeed* point[1], null, null);
+                    tileView.addMarker(textView, Constant.TimesNeed * point[0], Constant.TimesNeed * point[1], null, null);
                     tvList.add(textView);
                     hxpd = 1;
                 }
@@ -1940,13 +1909,13 @@ public class DhActivity extends SerialPortActivity {
 //        b = BitmapFactory
 //                .decodeResource(getResources(), R.drawable.test, options);
 //        sceneMap.setBitmap(b);
-        if(ship_a==null) {
+        if (ship_a == null) {
             ship_a = BitmapFactory.decodeResource(getResources(),
-                    R.drawable.aleichuan,options);
+                    R.drawable.aleichuan, options);
         }
-        if(ship_b==null) {
+        if (ship_b == null) {
             ship_b = BitmapFactory.decodeResource(getResources(),
-                    R.drawable.bleichuan,options);
+                    R.drawable.bleichuan, options);
         }
 //        initMap();
 
@@ -2388,7 +2357,7 @@ public class DhActivity extends SerialPortActivity {
             double jd = sb.getLongitude();
             double wd = sb.getLatitude();
 
-            frameToWithScale(Constant.TimesNeed*(jd - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5+1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5-Constant.minX5+1),Constant.TimesNeed* Constant.WpTimes * (GetLongLati.getY(wd, 5) - Constant.minY5 * 256), tileView.getDetailLevelManager().getScale());
+            frameToWithScale(Constant.TimesNeed * (jd - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1), Constant.TimesNeed * Constant.WpTimes * (GetLongLati.getY(wd, 5) - Constant.minY5 * 256), tileView.getDetailLevelManager().getScale());
         } else {
             Toast.makeText(this, "本船暂未定位", Toast.LENGTH_SHORT).show();
         }
@@ -2398,13 +2367,6 @@ public class DhActivity extends SerialPortActivity {
        保存航线
         */
     public void bchx(View view) {
-//        DBManager dbManager = new DBManager(DhActivity.this);
-//        if (hxlist.size() != 0) {
-//            for (int i = 0; i < hxlist.size(); i++) {
-//                hxlist.get(i).setCourse_name("我的航线");
-//            }
-//        }
-//        dbManager.addCourse(hxlist);
         bchxDialog = new BchxDialog(DhActivity.this);
         bchxDialog.setNoOnclickListener(null, new BchxDialog.onNoOnclickListener() {
             @Override
@@ -2420,12 +2382,12 @@ public class DhActivity extends SerialPortActivity {
                 Logger.d("Strings", s + "");
                 if (!TextUtils.isEmpty(s)) {
                     if (dbManager.getCourseName(s) == null) {
-                        if (hxlist.size() != 0) {
-                            for (int i = 0; i < hxlist.size(); i++) {
-                                hxlist.get(i).setCourse_name(s);
+                        if (navLineList.size() != 0) {
+                            for (int i = 0; i < navLineList.size(); i++) {
+                                navLineList.get(i).setCourse_name(s);
                             }
 
-                            dbManager.addCourse(hxlist);
+                            dbManager.addCourse(navLineList);
                             bchxDialog.dismiss();
                             Toast.makeText(DhActivity.this, "保存成功", Toast.LENGTH_SHORT).show();
                         } else {
@@ -2470,7 +2432,7 @@ public class DhActivity extends SerialPortActivity {
     double jd_d;
 
     public void dhsearcher(View view) {
-       final SelfDialog dialog2 = new SelfDialog(this);
+        final SelfDialog dialog2 = new SelfDialog(this);
 //        et_w_d=(EditText) dialog2.findViewById(R.id.et_w_d);
 //        et_w_f=(EditText) dialog2.findViewById(R.id.et_w_f);
 //        et_w_m=(EditText) dialog2.findViewById(R.id.et_w_m);
@@ -2536,7 +2498,7 @@ public class DhActivity extends SerialPortActivity {
                     djd = Double.parseDouble(jd) + Double.parseDouble(jf) / (60 + 0.0) + Double.parseDouble(jm) / (3600 + 0.0);
                 }
 
-                frameToWithScale(Constant.TimesNeed*(djd - GetLongLati.getLong( Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5+1), 0, 5) - GetLongLati.getLong( Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5-Constant.minX5+1), Constant.TimesNeed*Constant.WpTimes * (GetLongLati.getY(dwd, 5) - Constant.minY5 * 256), 0.5f);
+                frameToWithScale(Constant.TimesNeed * (djd - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1), Constant.TimesNeed * Constant.WpTimes * (GetLongLati.getY(dwd, 5) - Constant.minY5 * 256), 0.5f);
                 viewLL = getLayoutInflater().inflate(R.layout.home_map_fav_float, null);
 //                       float fraction=tileView.getDetailLevelManager().getScale();
                 ImageView iv = (ImageView) viewLL.findViewById(R.id.iv_close);
@@ -2624,13 +2586,13 @@ public class DhActivity extends SerialPortActivity {
                 TileView tile = getTileView();
                 MarkerLayout.LayoutParams layout = new MarkerLayout.LayoutParams(40, 100);
                 viewLL.setLayoutParams(layout);
-                double[] point = {(djd - GetLongLati.getLong( Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5+1), 0, 5) - GetLongLati.getLong( Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5-Constant.minX5+1), Constant.WpTimes * (GetLongLati.getY(dwd, 5) - Constant.minY5 * 256)};
+                double[] point = {(djd - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1), Constant.WpTimes * (GetLongLati.getY(dwd, 5) - Constant.minY5 * 256)};
                 for (View view3 : ls_view_mark) {
                     tileView.getMarkerLayout().removeMarker(view3);
                 }
                 ls_view_mark.clear();
                 ls_view_mark.add(viewLL);
-                tile.addMarker(viewLL,Constant.TimesNeed* point[0], Constant.TimesNeed*point[1], -0.5f, -1f);
+                tile.addMarker(viewLL, Constant.TimesNeed * point[0], Constant.TimesNeed * point[1], -0.5f, -1f);
 
 //
 
@@ -2707,16 +2669,16 @@ public class DhActivity extends SerialPortActivity {
                     if (hdpoints.size() != 0) {
                         bcjuliBean = hdpoints.get(0);
                     }//本船到的第一个点的经纬度
-                    double[] aa = {(myjuliBean.getJingdu() - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5+1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5-Constant.minX5+1), Constant.WpTimes * (GetLongLati.getY(myjuliBean.getWeidu(), 5) - Constant.minY5 * 256)};
+                    double[] aa = {(myjuliBean.getJingdu() - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1), Constant.WpTimes * (GetLongLati.getY(myjuliBean.getWeidu(), 5) - Constant.minY5 * 256)};
                     double jd = sb.getLongitude();
                     double wd = sb.getLatitude();
 
-                    frameToWithScale(Constant.TimesNeed*(jd - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5+1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5-Constant.minX5+1),Constant.TimesNeed* Constant.WpTimes * (GetLongLati.getY(wd, 5) - Constant.minY5 * 256), tileView.getDetailLevelManager().getScale());
+                    frameToWithScale(Constant.TimesNeed * (jd - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1), Constant.TimesNeed * Constant.WpTimes * (GetLongLati.getY(wd, 5) - Constant.minY5 * 256), tileView.getDetailLevelManager().getScale());
                     lslist.add(aa);
                     lslist.addAll(cjpoints);
 
-                    tileView.drawPath3( lslist.subList(0,  lslist.size()), null);
-                    double[] point2 = {(bcjuliBean.getJingdu() - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5+1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5-Constant.minX5+1), Constant.WpTimes * (GetLongLati.getY(bcjuliBean.getWeidu(), 5) - Constant.minY5 * 256)};
+                    tileView.drawPath3(lslist.subList(0, lslist.size()), null);
+                    double[] point2 = {(bcjuliBean.getJingdu() - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1), Constant.WpTimes * (GetLongLati.getY(bcjuliBean.getWeidu(), 5) - Constant.minY5 * 256)};
                     TextView textView2 = new TextView(DhActivity.this);
                     double jwtext = LocationUtils.gps2m(myjuliBean.getWeidu(), myjuliBean.getJingdu(), bcjuliBean.getWeidu(), bcjuliBean.getJingdu());
 //                            Toast.makeText(CjActivity.this, "纬度：" + doub1[1] + "经度：" + doub1[0], Toast.LENGTH_SHORT).show();
@@ -2847,7 +2809,7 @@ public class DhActivity extends SerialPortActivity {
                     double jd = pointBean.getLongitude();
                     double wd = pointBean.getLatitude();
                     JuliBean juliBean = new JuliBean();
-                    double[] point = {(jd - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5+1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5-Constant.minX5+1), Constant.WpTimes * (GetLongLati.getY(wd, 5) - Constant.minY5 * 256)};
+                    double[] point = {(jd - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1), Constant.WpTimes * (GetLongLati.getY(wd, 5) - Constant.minY5 * 256)};
                     double[] jwpoint = {jd, wd};
                     juliBean.setJingdu(jd);
                     juliBean.setWeidu(wd);
@@ -2857,7 +2819,7 @@ public class DhActivity extends SerialPortActivity {
                     hdname.add(name);
                     maphdName.add(name);
 //                        hdpoints.remove(0);
-                    cjpoints.add(new double[]{(jd - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5+1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5-Constant.minX5+1), Constant.WpTimes * (GetLongLati.getY(wd, 5) - Constant.minY5 * 256)});
+                    cjpoints.add(new double[]{(jd - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1), Constant.WpTimes * (GetLongLati.getY(wd, 5) - Constant.minY5 * 256)});
                     ImageView marker = new ImageView(DhActivity.this);
                     marker.setTag(point);
                     if (pointBean != null && pointBean.getImage() != -1) {
@@ -2876,13 +2838,13 @@ public class DhActivity extends SerialPortActivity {
                     double k22 = (sy * tileView.getDetailLevelManager().getScale()) / (40 + 0f);
                     float kh2 = (float) (k12 - 0.5f);
                     float khy2 = (float) (k22 - 0.5f);
-                    tileView.addMarker2(marker,Constant.TimesNeed* point[0],Constant.TimesNeed*  point[1], kh2, khy2, 40, 40);
+                    tileView.addMarker2(marker, Constant.TimesNeed * point[0], Constant.TimesNeed * point[1], kh2, khy2, 40, 40);
                     dhimgList.add(marker);
                     TextView textView = new TextView(DhActivity.this);
                     textView.setText(name);
                     hd++;
                     textView.setTextColor(Color.BLACK);
-                    tileView.addMarker2(textView,Constant.TimesNeed*  point[0], Constant.TimesNeed* point[1], kh2 - 0.5f, khy2, 40, 40);
+                    tileView.addMarker2(textView, Constant.TimesNeed * point[0], Constant.TimesNeed * point[1], kh2 - 0.5f, khy2, 40, 40);
                     tvList.add(textView);
                     dhCoursePointDialog.dismiss();
                 } else {
@@ -2903,16 +2865,16 @@ public class DhActivity extends SerialPortActivity {
         if (hxpd == 0) {
             DBManager dbManager = new DBManager(DhActivity.this);
 
-            hdlist = dbManager.getCoursePoints(name);
+            navPointList = dbManager.getCoursePoints(name);
             //经度lon 纬度lat
-            if (hdlist.size() != 0) {
-                for (int i = 0; i < hdlist.size(); i++) {
-                    double jd = hdlist.get(i).getLongitude();
-                    double wd = hdlist.get(i).getLatitude();
-                    ImageDList.add(hdlist.get(i).getImage());
-                    maphdName.add(hdlist.get(i).getName());
+            if (navPointList.size() != 0) {
+                for (int i = 0; i < navPointList.size(); i++) {
+                    double jd = navPointList.get(i).getLongitude();
+                    double wd = navPointList.get(i).getLatitude();
+                    ImageDList.add(navPointList.get(i).getImage());
+                    maphdName.add(navPointList.get(i).getName());
                     JuliBean juliBean = new JuliBean();
-                    double[] point = {(jd - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5+1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5-Constant.minX5+1), Constant.WpTimes * (GetLongLati.getY(wd, 5) - Constant.minY5 * 256)};
+                    double[] point = {(jd - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1), Constant.WpTimes * (GetLongLati.getY(wd, 5) - Constant.minY5 * 256)};
                     double[] jwpoint = {jd, wd};
                     juliBean.setJingdu(jd);
                     juliBean.setWeidu(wd);
@@ -2922,16 +2884,16 @@ public class DhActivity extends SerialPortActivity {
 //                    hdname.add(name);
 //                        hdpoints.remove(0);
                     cjpoints.add(new double[]{(jd - GetLongLati.getLong(Constant.minX5, 0, 5)) /
-                            ((GetLongLati.getLong((Constant.maxX5+1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) *
-                            Constant.wapianWidth * (Constant.maxX5-Constant.minX5+1),
+                            ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) *
+                            Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1),
                             Constant.WpTimes * (GetLongLati.getY(wd, 5) - Constant.minY5 * 256)});
                     ImageView marker = new ImageView(DhActivity.this);
                     marker.setTag(point);
-                    if (hdlist.get(i).getImage() == -1) {
+                    if (navPointList.get(i).getImage() == -1) {
                         marker.setImageBitmap(yuan_3);
 //                        marker.setImageResource(Math.random() < 0.75 ? R.drawable.yuand3 : R.drawable.yuand3);
                     } else {
-                        marker.setImageResource(Constant.hdImage[hdlist.get(i).getImage()]);
+                        marker.setImageResource(Constant.hdImage[navPointList.get(i).getImage()]);
                     }
                     tileView.getMarkerLayout().setMarkerTapListener(markerTapListener);
                     int pointIntX = (int) point[0];
@@ -2942,13 +2904,13 @@ public class DhActivity extends SerialPortActivity {
                     double k22 = (sy * tileView.getDetailLevelManager().getScale()) / (40 + 0f);
                     float kh2 = (float) (k12 - 0.5f);
                     float khy2 = (float) (k22 - 0.5f);
-                    tileView.addMarker2(marker,  Constant.TimesNeed*point[0],  Constant.TimesNeed*point[1], kh2, khy2, 40, 40);
+                    tileView.addMarker2(marker, Constant.TimesNeed * point[0], Constant.TimesNeed * point[1], kh2, khy2, 40, 40);
                     dhimgList.add(marker);
                     TextView textView = new TextView(DhActivity.this);
-                    textView.setText(hdlist.get(i).getName());
+                    textView.setText(navPointList.get(i).getName());
                     hd++;
                     textView.setTextColor(Color.BLACK);
-                    tileView.addMarker2(textView, Constant.TimesNeed* point[0],Constant.TimesNeed*  point[1], kh2 - 0.5f, khy2, 40, 40);
+                    tileView.addMarker2(textView, Constant.TimesNeed * point[0], Constant.TimesNeed * point[1], kh2 - 0.5f, khy2, 40, 40);
                     tvList.add(textView);
 //                    dhCoursePointDiaLogger.dismiss();
                     dhxhPointDialog.dismiss();

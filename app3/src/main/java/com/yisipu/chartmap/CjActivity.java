@@ -40,7 +40,6 @@ import android.widget.Toast;
 import com.orhanobut.logger.Logger;
 import com.qozix.tileview.TileView;
 import com.qozix.tileview.markers.MarkerLayout;
-import com.qozix.tileview.widgets.ZoomPanLayout;
 import com.yisipu.chartmap.adapter.SlideMenuAdapter;
 import com.yisipu.chartmap.bean.CollectPointBean;
 import com.yisipu.chartmap.bean.Gpsbean;
@@ -509,109 +508,6 @@ public class CjActivity extends SerialPortActivity {
         });
         //获取编程DP指标
         DisplayMetrics metrics = getResources().getDisplayMetrics();
-        tileView.addZoomPanListener(new ZoomPanLayout.ZoomPanListener() {
-            @Override
-            public void onPanBegin(int x, int y, Origination origin) {
-                Logger.i("shgsdgB:" + x + "Y:" + y);
-
-            }
-
-            @Override
-            public void onPanUpdate(int x, int y, Origination origin) {
-                Logger.i("shgsdgU:" + x + "Y:" + y);
-            }
-
-            @Override
-            public void onPanEnd(int x, int y, Origination origin) {
-                Logger.i("shgsdgE:" + x + "Y:" + y);
-
-            }
-
-            @Override
-            public void onZoomBegin(float scale, Origination origin) {
-                Logger.i("sgsdg" + scale);
-                startScale =  getTileView().getDetailLevelManager().getScale();
-
-            }
-
-            @Override
-            public void onZoomUpdate(float scale, Origination origin) {
-                Logger.i("sgsdg2" + scale);
-            }
-
-            @Override
-            public void onZoomEnd(float scale, Origination origin) {
-                float maxScale=16f;
-                if (zls != null && zls.size() > 0) {
-                    //试验高于1
-                    maxScale=(float) (8f * (Math.pow(2, (zls.get(zls.size() - 1) - 9))));
-
-                } else {
-                    //试验高于1
-                    maxScale=8f;
-
-                }
-                Logger.i("sgsdg3" + scale);
-                endScale = scale;
-                if(startScale!=-1&&(Constant.TimesNeed*startScale*2)%2==0) {
-                    if ((endScale - startScale) >= 0.5*startScale&&startScale<=maxScale) {
-                        float b =2 * startScale;
-                        tileView.setScaleFromCenter(b);
-                        double z = Math.log(Constant.TimesNeed*b) / Math.log(2);
-                        double s = Constant.gongliMaxBl / Math.pow(2, z);
-//                    Logger.i("z" + z + "sgdg" + s + "dgs" + a + "sgss" + b);
-//                          blc_gongli=blc_gongli/Math.pow(2,z);
-                        double[] point = {(120 - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1), Constant.WpTimes * (GetLongLati.getY(24, 5) - Constant.minY5 * 256)};
-                        double jd2 = LocationUtils.doLngDegress((long) (1852 * Constant.gongliMaxBl / 1000), 24);
-                        double x2 = ((jd2 + 120) - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1);
-                        double s2 = Math.abs(x2 - point[0]);
-                        Logger.i("sdgskk" + s2);
-                        android.view.ViewGroup.LayoutParams lp = cj_lla_blc
-                                .getLayoutParams();
-                        lp.width = (int) (s2 / 2);
-                        cj_lla_blc.setLayoutParams(lp);
-                        DecimalFormat df3 = new DecimalFormat("##0.00");
-                        tv_gongli.setText("" + df3.format(s) + "海里");
-                    } else if ((startScale - endScale) >= (startScale / 2)&&startScale>=1) {
-                        float b = startScale / 2;
-                        tileView.setScaleFromCenter(b);
-                        double z = Math.log(Constant.TimesNeed*b) / Math.log(2);
-                        double s = Constant.gongliMaxBl / Math.pow(2, z);
-                        double[] point = {(120 - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1), Constant.WpTimes * (GetLongLati.getY(24, 5) - Constant.minY5 * 256)};
-                        double jd2 = LocationUtils.doLngDegress((long) (1852 * Constant.gongliMaxBl / 1000), 24);
-                        double x2 = ((jd2 + 120) - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1);
-                        double s2 = Math.abs(x2 - point[0]);
-                        Logger.i("sdgskk" + s2);
-                        android.view.ViewGroup.LayoutParams lp = cj_lla_blc
-                                .getLayoutParams();
-                        lp.width = (int) (s2 / 2);
-                        cj_lla_blc.setLayoutParams(lp);
-                        DecimalFormat df3 = new DecimalFormat("##0.00");
-                        tv_gongli.setText("" + df3.format(s) + "海里");
-                    } else {
-                        float b = startScale;
-                        tileView.setScaleFromCenter(b);
-                        double z = Math.log(Constant.TimesNeed*b) / Math.log(2);
-                        double s = Constant.gongliMaxBl / Math.pow(2, z);
-                        double[] point = {(120 - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1), Constant.WpTimes * (GetLongLati.getY(24, 5) - Constant.minY5 * 256)};
-                        double jd2 = LocationUtils.doLngDegress((long) (1852 * Constant.gongliMaxBl / 1000), 24);
-                        double x2 = ((jd2 + 120) - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5 + 1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5 - Constant.minX5 + 1);
-                        double s2 = Math.abs(x2 - point[0]);
-                        Logger.i("sdgskk" + s2);
-                        android.view.ViewGroup.LayoutParams lp = cj_lla_blc
-                                .getLayoutParams();
-                        lp.width = (int) (s2 / 2);
-                        cj_lla_blc.setLayoutParams(lp);
-                        DecimalFormat df3 = new DecimalFormat("##0.00");
-                        tv_gongli.setText("" + df3.format(s) + "海里");
-                    }
-
-                    Logger.i("sgkkkk3" + scale+"sdgsg"+startScale);
-                    startScale = -1;
-                }
-
-            }
-        });
         //让我们开始框架的所有点的中心
         double x = 0;
         double y = 0;
@@ -678,22 +574,6 @@ public class CjActivity extends SerialPortActivity {
       比例尺
        */
 
-        float b = tileView.getDetailLevelManager().getCurrentDetailLevel().getScale();
-        double z = Math.log(Constant.TimesNeed*b) / Math.log(2);
-        double s = Constant.gongliMaxBl / Math.pow(2, z);
-
-        double[] point3 = {(120 - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5+1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5-Constant.minX5+1), Constant.WpTimes * (GetLongLati.getY(24, 5) - Constant.minY5 * 256)};
-        double jd2 = LocationUtils.doLngDegress((long) (1852 * Constant.gongliMaxBl / 1000), 24);
-        double x2 = ((jd2 + 120) - GetLongLati.getLong(Constant.minX5, 0, 5)) / ((GetLongLati.getLong((Constant.maxX5+1), 0, 5) - GetLongLati.getLong(Constant.minX5, 0, 5))) * Constant.wapianWidth * (Constant.maxX5-Constant.minX5+1);
-        double s2 = Math.abs(x2 - point3[0]);
-        Logger.i("sdgskk" + s2);
-        android.view.ViewGroup.LayoutParams lp = cj_lla_blc
-                .getLayoutParams();
-        lp.width = (int) (s2 / 2);
-        cj_lla_blc.setLayoutParams(lp);
-        DecimalFormat df3 = new DecimalFormat("##0.00");
-        tv_gongli.setText("" + df3.format(s) + "海里");
-        blc_gongli = Constant.gongliMaxBl;
         cx.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -812,13 +692,7 @@ public class CjActivity extends SerialPortActivity {
                         }
                     }
                 }
-                Logger.d("getJingduhaxxxxxxxx" + (GetLongLati.pixelToLng(((v.getScrollX() + event.getX()) / (fraction / scale2) + Constant.minX5 * (256) * scale2), zoom)) + "y" + (GetLongLati.pixelToLat(((v.getScrollY() + event.getY()) / (fraction / scale2) + (Constant.minY5 * (256) * scale2)), zoom)));
-                Logger.d("getScale" + fraction + zoom);
-                Logger.d("getPivotX" + tileView.getPivotX() + "   y" + tileView.getPivotY());
-                Logger.d("getX" + tileView.getX() + "   y" + tileView.getY());
-                Logger.d("getScaleX" + tileView.getOffsetX() + "   y" + tileView.getOffsetY());
-                Logger.d("getLeft" + tileView.getRight() + "   y" + tileView.getBottom());
-                Logger.d("getScaledHeight" + tileView.getScaledHeight() + "   y" + tileView.getScaledWidth());
+
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     xDown = event.getX();
                     yDown = event.getY();
@@ -913,17 +787,6 @@ public class CjActivity extends SerialPortActivity {
                             float khyy = (float) (-0.5 + k22);
 //                            tileView.addMarker(textView, point[0], point[1], null, null);
                             tileView.addMarker(textView, point[0], point[1], khx, khyy);
-
-                        }
-                        if (xDown < viewWidth / 3) {
-                            //靠左点击
-//                            Toast.makeText(RealMapTileViewActivity.this, "靠左点击", Toast.LENGTH_LONG).show();
-                        } else if (xDown > viewWidth / 3 && xDown < viewWidth * 2 / 3) {
-                            //中间点击
-//                            Toast.makeText(RealMapTileViewActivity.this, "中间点击", Toast.LENGTH_LONG).show();
-                        } else {
-//                            Toast.makeText(RealMapTileViewActivity.this, "靠右点击", Toast.LENGTH_LONG).show();
-                            //靠右点击
                         }
                     }
                 } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
@@ -936,15 +799,8 @@ public class CjActivity extends SerialPortActivity {
                         }
                     }
                     if (isLongClickModule && !isLongClicking) {
-                        //处理长按事件
-                        Logger.d("weidu", "" + (NORTH_WEST_LATITUDE + (SOUTH_EAST_LATITUDE - NORTH_WEST_LATITUDE) * (((v.getScrollY() + event.getY()) / (fraction + 0.0)) / (tileView.getBaseHeight() + 0.0))));
-                        Logger.d("jingdu", "" + (NORTH_WEST_LONGITUDE + (SOUTH_EAST_LONGITUDE - NORTH_WEST_LONGITUDE) * (((v.getScrollX() + event.getX()) / (fraction + 0.0)) / (tileView.getBaseWidth() + 0.0))));
-//                        Toast.makeText(CjActivity.this, "xDown:" + xDown + "yDown:" + yDown + "长按" + "getY:" + event.getY() + "getX:" + event.getX() + "getXReal" + (v.getScrollX() + event.getX()) + "getYReal" + (v.getScrollY() + event.getY()), Toast.LENGTH_LONG).show();
                         isLongClicking = true;
-
                     }
-                } else {
-                    //其他模式
                 }
                 return false;
 

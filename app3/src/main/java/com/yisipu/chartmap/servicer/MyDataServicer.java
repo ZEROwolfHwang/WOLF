@@ -1176,19 +1176,7 @@ public class MyDataServicer extends Service {
                 sp = getSharedPreferences("sp", MODE_PRIVATE);//指定读取的对象
                 int fuwu = sp.getInt("fuwu", 0);
                 if (fuwu == 1) {
-                    int size;
                     try {
-
-
-//                    byte[] buffer = new byte[128];
-//                    if (mInputStream == null) return;
-//                    size = mInputStream.read(buffer);
-//
-//                    if (size > 0) {
-//                        onDataReceived(buffer, size);
-//                    }
-
-
                         BufferedReader in2 = new BufferedReader(new InputStreamReader(mInputStream));
 
                         String y = "";
@@ -1547,38 +1535,16 @@ public class MyDataServicer extends Service {
                             s.setReal_sudu(msg1.getTrueHeading());
                             s.setStatus(msg1.getNavStatus());
                             s.setMyShip(true);
-//                            接收到消息1、2、3、5 说明这个mmsi为A类船舶
-//                            接收到消息18、19、24 说明这个mmsi为B类船舶  以上为其他船，本船都为B类船
-
-//                            if (tem.charAt(12) == 'A') {
-//                                s.setClassType(1);
-
-//                            } else if (tem.charAt(12) == 'B') {
                             s.setClassType(2);
-//                            }
                             if (s.getMMSI() != 0)
                                 db.addShipBean(s);
-
-//                                   db.closeDb();
-
-//
                         }
-
-//
-
-                        ;
 
                         break;
                     case 5:
-                             /*
-                            本船
-                             */
-//
                         WriteFileToAis2(tem);
                         AisMessage message1 = AisMessage.getInstance(vdm);
                         Logger.i(message1.getMsgId() + "22sgdsfg");
-//                                 AisMessage message1 = AisMessage.getApplication(a);
-//
                         if (message1 instanceof AisMessage5) {
                             AisMessage5 msg1 = (AisMessage5) message1;
 
@@ -1610,23 +1576,10 @@ public class MyDataServicer extends Service {
                             s.setDimStarboard(msg1.getDimStarboard());
                             s.setDimStern(msg1.getDimStern());
                             s.setMyShip(true);
-//                            if (tem.charAt(13) == 'A') {
-//                                s.setClassType(1);
-
-//                            } else if (tem.charAt(13) == 'B') {
                             s.setClassType(2);
-//                            }
                             if (s.getMMSI() != 0)
                                 db.addShipBean(s);
-
-
-//
                         }
-
-
-//
-
-                        ;
 
                         break;
                     case 18:

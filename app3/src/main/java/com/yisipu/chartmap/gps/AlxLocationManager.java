@@ -83,7 +83,7 @@ public class AlxLocationManager implements GoogleApiClient.ConnectionCallbacks,G
         NOT_TRACK//当前没有开启跟踪模式
     }
 
-    public final static boolean isDebugging = true;//是否显示toast开关
+    public final static boolean isDebugging = false;//是否显示toast开关
 
     public static AlxLocationManager getInstance(){
         return manager;
